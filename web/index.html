@@ -267,24 +267,79 @@
       margin-bottom: 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
     .prompt-row {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
     .prompt-label {
       font-size: 11px;
       text-transform: uppercase;
       font-weight: 700;
       color: #8b949e;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .prompt-label-badge {
+      font-size: 10px;
+      background: #1f6feb22;
+      color: #58a6ff;
+      border: 1px solid #1f6feb55;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+    .prompt-content {
+      font-size: 13.5px;
+      line-height: 1.6;
     }
     .prompt-text-highlight {
-      color: #7ee787;
-      font-size: 13.5px;
-      font-weight: 500;
+      color: #e6edf3;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 14px;
+      line-height: 1.7;
     }
+
+    /* Diff Highlight Marks */
+    mark {
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13.5px;
+    }
+    .tr-add {
+      background: rgba(46, 160, 67, 0.22);
+      color: #3fb950;
+      border: 1px solid rgba(46, 160, 67, 0.4);
+      font-weight: 600;
+    }
+    .tr-del {
+      background: rgba(248, 81, 73, 0.20);
+      color: #f85149;
+      border: 1px solid rgba(248, 81, 73, 0.4);
+      text-decoration: line-through;
+      text-decoration-color: #f85149;
+    }
+    .tr-chg {
+      background: rgba(56, 139, 253, 0.18);
+      color: #58a6ff;
+      border: 1px solid rgba(56, 139, 253, 0.4);
+      padding: 2px 8px;
+    }
+    .tr-chg s {
+      color: #f85149;
+      text-decoration: line-through;
+      margin-right: 4px;
+    }
+    .tr-chg b {
+      color: #3fb950;
+      font-weight: 700;
+    }
+
     .audio-comparison-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -322,18 +377,25 @@
       margin-top: 4px;
     }
     .chip-btn {
-      font-size: 11px;
+      font-size: 12px;
       background: #21262d;
       color: var(--text-muted);
       border: 1px solid var(--card-border);
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: 3px 10px;
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+    .chip-btn:hover {
+      border-color: #58a6ff;
+      color: #f0f6fc;
     }
     .chip-btn.active {
-      background: #388bfd;
+      background: #1f6feb;
       color: #fff;
-      border-color: #388bfd;
+      border-color: #1f6feb;
+      font-weight: 600;
     }
     .footer {
       text-align: center;
@@ -373,8 +435,8 @@
         <span class="stat-label">端到端超实时生成倍速</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-val">1:1 对齐</span>
-        <span class="stat-label">语速与官方原版完全一致</span>
+        <span class="stat-val">完整标记</span>
+        <span class="stat-label">官方 Diff 与编辑指令 1:1 对标</span>
       </div>
       <div class="stat-pill">
         <span class="stat-val">Metal GPU</span>
@@ -392,7 +454,7 @@
 
   <main class="container">
     <div class="search-row">
-      <input type="text" class="search-input" id="search-input" placeholder="搜索任务、台词或样本 ID (例如: 枭雄, 质问, 寂寞, zs-tts)...">
+      <input type="text" class="search-input" id="search-input" placeholder="搜索任务、编辑动作、台词或样本 ID (例如: Replace, Add, 曾两次进谒, 枭雄)...">
       <div style="display:flex; align-items:center; gap:12px;">
         <span style="font-size:13px; color:var(--text-muted);" id="sample-count-badge">显示 62 个样本</span>
         <button class="refresh-btn" onclick="forceReload()">强制刷新音频缓存</button>
@@ -498,6 +560,51 @@
       });
     }
 
+    /* Official HTML Diff Marker Algorithm */
+    function renderTranscriptDiff(rawText, markRule) {
+      if (!rawText) return "";
+      let html = escapeHtml(rawText);
+      if (!markRule) return html;
+
+      // 1. Change (Replace)
+      if (markRule.change && Array.isArray(markRule.change)) {
+        markRule.change.slice().sort((a, b) => b.from.length - a.from.length).forEach(c => {
+          const fromEsc = escapeHtml(c.from);
+          const toEsc = escapeHtml(c.to);
+          const repHtml = '<mark class="tr-chg"><s>' + fromEsc + '</s> ➔ <b>' + toEsc + '</b></mark>';
+          html = html.split(fromEsc).join(repHtml);
+        });
+      }
+
+      // 2. Delete
+      if (markRule.delete && Array.isArray(markRule.delete)) {
+        markRule.delete.slice().sort((a, b) => b.length - a.length).forEach(delText => {
+          const delEsc = escapeHtml(delText);
+          const delHtml = '<mark class="tr-del"><del>' + delEsc + '</del></mark>';
+          html = html.split(delEsc).join(delHtml);
+        });
+      }
+
+      // 3. Add (Insert)
+      if (markRule.add && Array.isArray(markRule.add)) {
+        markRule.add.forEach(a => {
+          const addEsc = escapeHtml(a.text || a);
+          const addHtml = '<mark class="tr-add">+ ' + addEsc + '</mark>';
+          if (a.before && html.includes(escapeHtml(a.before))) {
+            const bEsc = escapeHtml(a.before);
+            html = html.split(bEsc).join(addHtml + ' ' + bEsc);
+          } else if (a.after && html.includes(escapeHtml(a.after))) {
+            const aftEsc = escapeHtml(a.after);
+            html = html.split(aftEsc).join(aftEsc + ' ' + addHtml);
+          } else {
+            html += ' ' + addHtml;
+          }
+        });
+      }
+
+      return html;
+    }
+
     function renderSamples() {
       const container = document.getElementById("samples-container");
       container.innerHTML = "";
@@ -538,15 +645,49 @@
 
         const card = document.createElement("div");
         card.className = "card";
+        card.id = "card-" + sample.id;
 
+        // Multi-outputs handling for Editing & Nonverbal
         let officialSlotHtml = "";
-        if (sample.official_audio) {
+        let defaultTrackLabel = "";
+        let initialMarks = null;
+        let initialInstruction = sample.instruction;
+
+        if (sample.official_multi && sample.official_multi.length > 0) {
+          // If multi tracks, pick the first edited one (e.g. ������ Replace or ➕ Add or Output)
+          let activeIdx = 0;
+          for (let i = 0; i < sample.official_multi.length; i++) {
+            if (sample.official_multi[i].label !== "Input") {
+              activeIdx = i;
+              break;
+            }
+          }
+          const activeTrack = sample.official_multi[activeIdx];
+          defaultTrackLabel = activeTrack.label;
+
+          // Check if marks exist for this label
+          if (sample.transcriptMarks && sample.transcriptMarks[defaultTrackLabel]) {
+            initialMarks = sample.transcriptMarks[defaultTrackLabel];
+          } else if (sample.transcriptMarks && sample.transcriptMarks["Output"]) {
+            initialMarks = sample.transcriptMarks["Output"];
+          }
+
+          if (sample.nvInstructions && sample.nvInstructions[defaultTrackLabel]) {
+            initialInstruction = sample.nvInstructions[defaultTrackLabel];
+          }
+
+          officialSlotHtml = '<div class="audio-slot">' +
+            '<span class="slot-title official">[官方原版] <span id="label-tag-' + sample.id + '">' + activeTrack.label + '</span></span>' +
+            '<audio controls preload="metadata" src="' + activeTrack.url + '?_t=' + sessionTime + '" id="audio-off-' + sample.id + '"></audio>' +
+            '<div class="multi-outputs">' +
+              sample.official_multi.map((item, idx) => '<button class="chip-btn ' + (idx===activeIdx?'active':'') + '" onclick="switchEditTrack(\'' + sample.id + '\', \'' + item.url + '\', \'' + item.label + '\', this)">' + item.label + '</button>').join("") +
+            '</div>' +
+          '</div>';
+        } else if (sample.official_audio) {
+          if (sample.transcriptMarks && sample.transcriptMarks["Output"]) {
+            initialMarks = sample.transcriptMarks["Output"];
+          }
           officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">[官方原版] 演示输出</span><audio controls preload="metadata" src="' + sample.official_audio + '?_t=' + sessionTime + '"></audio></div>';
-        } else if (sample.official_multi && sample.official_multi.length > 0) {
-          const first = sample.official_multi[0];
-          officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">[官方原版] ' + first.label + '</span><audio controls preload="metadata" src="' + first.url + '?_t=' + sessionTime + '" id="audio-off-' + sample.id + '"></audio><div class="multi-outputs">' +
-            sample.official_multi.map((item, idx) => '<button class="chip-btn ' + (idx===0?'active':'') + '" onclick="switchTrack(\'' + sample.id + '\', \'' + item.url + '\', this)">' + item.label + '</button>').join("") +
-            '</div></div>';
         } else {
           officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">[官方原版] 输出</span><div style="font-size:12px; color:var(--text-muted); padding: 8px;">无独立单轨 (滑块演示)</div></div>';
         }
@@ -557,14 +698,32 @@
 
         let mlxSlotHtml = '<div class="audio-slot"><span class="slot-title mlx">[本项目生成] MLX-AuK 本地音频</span><audio controls preload="metadata" src="' + sample.mlx_audio + '?_t=' + sessionTime + '"></audio></div>';
 
+        // Prompt Box rendering
         let promptRowsHtml = "";
-        if (sample.voice_description) {
-          promptRowsHtml += '<div class="prompt-row"><span class="prompt-label">【音色/风格设定描述】</span><div>' + escapeHtml(sample.voice_description) + '</div></div>';
-        } else if (sample.instruction) {
-          promptRowsHtml += '<div class="prompt-row"><span class="prompt-label">【操作指令】</span><div>' + escapeHtml(sample.instruction) + '</div></div>';
+        let instrBoxLabel = "【操作指令】";
+        if (grp.id === "content-edit-speech" || grp.id === "vocal-edit") {
+          instrBoxLabel = "【自然语言编辑指令 (Speech Content Editing)】";
+        } else if (sample.voice_description) {
+          instrBoxLabel = "【音色/风格设定描述】";
         }
+
+        promptRowsHtml += '<div class="prompt-row">' +
+          '<span class="prompt-label" id="instr-label-' + sample.id + '">' +
+            instrBoxLabel +
+            (grp.id === "content-edit-speech" ? '<span class="prompt-label-badge" id="badge-mode-' + sample.id + '">' + defaultTrackLabel + '</span>' : '') +
+          '</span>' +
+          '<div class="prompt-content" id="instr-text-' + sample.id + '" style="color:#58a6ff; font-weight:500;">' +
+            escapeHtml(initialInstruction || sample.instruction || (sample.voice_description || "保持原音频并应用声学转换")) +
+          '</div>' +
+        '</div>';
+
         if (sample.spoken_text) {
-          promptRowsHtml += '<div class="prompt-row"><span class="prompt-label">【朗读目标台词 (Spoken Content)】</span><div class="prompt-text-highlight">“' + escapeHtml(sample.spoken_text) + '”</div></div>';
+          let renderedTranscript = renderTranscriptDiff(sample.spoken_text, initialMarks);
+          let transLabel = grp.id === "content-edit-speech" ? "【台词修改对照 (Diff 标注)】" : "【朗读目标台词 (Spoken Content)】";
+          promptRowsHtml += '<div class="prompt-row">' +
+            '<span class="prompt-label">' + transLabel + '</span>' +
+            '<div class="prompt-text-highlight" id="transcript-view-' + sample.id + '">' + renderedTranscript + '</div>' +
+          '</div>';
         }
 
         card.innerHTML = '<div class="card-header">' +
@@ -583,14 +742,59 @@
       });
     }
 
-    function switchTrack(sampleId, url, btn) {
+    /* Dynamic Track & Diff Switcher */
+    function switchEditTrack(sampleId, url, trackLabel, btn) {
+      // 1. Play audio
       const audio = document.getElementById("audio-off-" + sampleId);
       if (audio) {
         audio.src = url;
         audio.play();
       }
+
+      // 2. Update button styles
       btn.parentElement.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
+
+      // 3. Find sample data
+      let currentSample = null;
+      catalogData.forEach(fam => {
+        fam.groups.forEach(g => {
+          g.samples.forEach(s => {
+            if (s.id === sampleId) currentSample = s;
+          });
+        });
+      });
+
+      if (!currentSample) return;
+
+      // 4. Update track tag in header
+      const tag = document.getElementById("label-tag-" + sampleId);
+      if (tag) tag.textContent = trackLabel;
+
+      const badge = document.getElementById("badge-mode-" + sampleId);
+      if (badge) badge.textContent = trackLabel;
+
+      // 5. Update instruction text
+      const instrText = document.getElementById("instr-text-" + sampleId);
+      if (instrText) {
+        if (currentSample.nvInstructions && currentSample.nvInstructions[trackLabel]) {
+          instrText.textContent = currentSample.nvInstructions[trackLabel];
+        } else if (trackLabel === "Input") {
+          instrText.textContent = "原始未编辑音频输入";
+        } else {
+          instrText.textContent = currentSample.instruction || "执行 " + trackLabel;
+        }
+      }
+
+      // 6. Update Transcript Diff highlight
+      const transView = document.getElementById("transcript-view-" + sampleId);
+      if (transView && currentSample.spoken_text) {
+        let marks = null;
+        if (currentSample.transcriptMarks && currentSample.transcriptMarks[trackLabel]) {
+          marks = currentSample.transcriptMarks[trackLabel];
+        }
+        transView.innerHTML = renderTranscriptDiff(currentSample.spoken_text, marks);
+      }
     }
 
     function escapeHtml(text) {
