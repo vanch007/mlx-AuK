@@ -305,7 +305,6 @@
       line-height: 1.7;
     }
 
-    /* Diff Highlight Marks */
     mark {
       padding: 2px 6px;
       border-radius: 4px;
@@ -435,8 +434,8 @@
         <span class="stat-label">端到端超实时生成倍速</span>
       </div>
       <div class="stat-pill">
-        <span class="stat-val">完整标记</span>
-        <span class="stat-label">官方 Diff 与编辑指令 1:1 对标</span>
+        <span class="stat-val">双轨同步</span>
+        <span class="stat-label">官方原版与 MLX 编辑同步切轨</span>
       </div>
       <div class="stat-pill">
         <span class="stat-val">Metal GPU</span>
@@ -560,13 +559,11 @@
       });
     }
 
-    /* Official HTML Diff Marker Algorithm */
     function renderTranscriptDiff(rawText, markRule) {
       if (!rawText) return "";
       let html = escapeHtml(rawText);
       if (!markRule) return html;
 
-      // 1. Change (Replace)
       if (markRule.change && Array.isArray(markRule.change)) {
         markRule.change.slice().sort((a, b) => b.from.length - a.from.length).forEach(c => {
           const fromEsc = escapeHtml(c.from);
@@ -576,7 +573,6 @@
         });
       }
 
-      // 2. Delete
       if (markRule.delete && Array.isArray(markRule.delete)) {
         markRule.delete.slice().sort((a, b) => b.length - a.length).forEach(delText => {
           const delEsc = escapeHtml(delText);
@@ -585,7 +581,6 @@
         });
       }
 
-      // 3. Add (Insert)
       if (markRule.add && Array.isArray(markRule.add)) {
         markRule.add.forEach(a => {
           const addEsc = escapeHtml(a.text || a);
@@ -647,14 +642,13 @@
         card.className = "card";
         card.id = "card-" + sample.id;
 
-        // Multi-outputs handling for Editing & Nonverbal
         let officialSlotHtml = "";
         let defaultTrackLabel = "";
         let initialMarks = null;
         let initialInstruction = sample.instruction;
+        let initialMlxUrl = sample.mlx_audio;
 
         if (sample.official_multi && sample.official_multi.length > 0) {
-          // If multi tracks, pick the first edited one (e.g. ������ Replace or ➕ Add or Output)
           let activeIdx = 0;
           for (let i = 0; i < sample.official_multi.length; i++) {
             if (sample.official_multi[i].label !== "Input") {
@@ -665,7 +659,6 @@
           const activeTrack = sample.official_multi[activeIdx];
           defaultTrackLabel = activeTrack.label;
 
-          // Check if marks exist for this label
           if (sample.transcriptMarks && sample.transcriptMarks[defaultTrackLabel]) {
             initialMarks = sample.transcriptMarks[defaultTrackLabel];
           } else if (sample.transcriptMarks && sample.transcriptMarks["Output"]) {
@@ -674,6 +667,11 @@
 
           if (sample.nvInstructions && sample.nvInstructions[defaultTrackLabel]) {
             initialInstruction = sample.nvInstructions[defaultTrackLabel];
+          }
+
+          if (sample.mlx_multi && sample.mlx_multi.length > 0) {
+            const matchingMlx = sample.mlx_multi.find(t => t.label === defaultTrackLabel);
+            if (matchingMlx) initialMlxUrl = matchingMlx.url;
           }
 
           officialSlotHtml = '<div class="audio-slot">' +
@@ -696,9 +694,11 @@
           '<div class="audio-slot"><span class="slot-title src">[参考原音频] 输入声音</span><audio controls preload="metadata" src="' + sample.input_audio + '?_t=' + sessionTime + '"></audio></div>' :
           '<div class="audio-slot"><span class="slot-title src">[输入状态]</span><div style="font-size:12px; color:var(--text-muted); padding: 8px;">纯文本角色音色描述 (无参考音频)</div></div>';
 
-        let mlxSlotHtml = '<div class="audio-slot"><span class="slot-title mlx">[本项目生成] MLX-AuK 本地音频</span><audio controls preload="metadata" src="' + sample.mlx_audio + '?_t=' + sessionTime + '"></audio></div>';
+        let mlxSlotHtml = '<div class="audio-slot">' +
+          '<span class="slot-title mlx">[本项目生成] MLX-AuK 本地音频 <span id="mlx-tag-' + sample.id + '" style="font-size:11px; color:#7ee787; font-weight:normal;">' + (defaultTrackLabel ? '('+defaultTrackLabel+')' : '') + '</span></span>' +
+          '<audio controls preload="metadata" src="' + initialMlxUrl + '?_t=' + sessionTime + '" id="audio-mlx-' + sample.id + '"></audio>' +
+        '</div>';
 
-        // Prompt Box rendering
         let promptRowsHtml = "";
         let instrBoxLabel = "【操作指令】";
         if (grp.id === "content-edit-speech" || grp.id === "vocal-edit") {
@@ -742,20 +742,17 @@
       });
     }
 
-    /* Dynamic Track & Diff Switcher */
     function switchEditTrack(sampleId, url, trackLabel, btn) {
-      // 1. Play audio
+      // 1. Play official audio
       const audio = document.getElementById("audio-off-" + sampleId);
       if (audio) {
         audio.src = url;
         audio.play();
       }
 
-      // 2. Update button styles
       btn.parentElement.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
-      // 3. Find sample data
       let currentSample = null;
       catalogData.forEach(fam => {
         fam.groups.forEach(g => {
@@ -767,14 +764,23 @@
 
       if (!currentSample) return;
 
-      // 4. Update track tag in header
+      // 2. Synchronously switch MLX audio player!
+      const mlxAudio = document.getElementById("audio-mlx-" + sampleId);
+      const mlxTag = document.getElementById("mlx-tag-" + sampleId);
+      if (mlxAudio && currentSample.mlx_multi) {
+        const targetMlx = currentSample.mlx_multi.find(t => t.label === trackLabel);
+        if (targetMlx) {
+          mlxAudio.src = targetMlx.url + "?_t=" + Date.now();
+          if (mlxTag) mlxTag.textContent = "(" + trackLabel + ")";
+        }
+      }
+
       const tag = document.getElementById("label-tag-" + sampleId);
       if (tag) tag.textContent = trackLabel;
 
       const badge = document.getElementById("badge-mode-" + sampleId);
       if (badge) badge.textContent = trackLabel;
 
-      // 5. Update instruction text
       const instrText = document.getElementById("instr-text-" + sampleId);
       if (instrText) {
         if (currentSample.nvInstructions && currentSample.nvInstructions[trackLabel]) {
@@ -786,7 +792,6 @@
         }
       }
 
-      // 6. Update Transcript Diff highlight
       const transView = document.getElementById("transcript-view-" + sampleId);
       if (transView && currentSample.spoken_text) {
         let marks = null;

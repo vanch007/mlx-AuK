@@ -249,7 +249,25 @@
               "➖ Delete": "Delete “南阳野人，疏懒成性”",
               "🔁 Replace": "Replace “曾两次进谒不得相见” with “我想与先生共商国事”"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-zh-1-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples/ce-zh-1_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples/ce-zh-1_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples/ce-zh-1_replace.wav"
+              }
+            ]
           },
           {
             "id": "ce-zh-2",
@@ -312,7 +330,25 @@
               "➖ Delete": "Delete “用两发炮弹”",
               "🔁 Replace": "Replace “半斤地瓜烧” with “两只大烧鸡”"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-zh-2-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples/ce-zh-2_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples/ce-zh-2_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples/ce-zh-2_replace.wav"
+              }
+            ]
           },
           {
             "id": "ce-en-1",
@@ -375,7 +411,25 @@
               "➖ Delete": "Delete “You know, for all the hours I spend in the gym working and training”",
               "🔁 Replace": "Replace “Mamba” with “James”"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-en-1-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples/ce-en-1_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples/ce-en-1_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples/ce-en-1_replace.wav"
+              }
+            ]
           },
           {
             "id": "ce-en-2",
@@ -438,7 +492,25 @@
               "➖ Delete": "Delete “not fighting for what we want, but”",
               "🔁 Replace": "Replace “but accepting what we cannot have” with “and living well with dreams unmet”"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-en-2-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples/ce-en-2_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples/ce-en-2_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples/ce-en-2_replace.wav"
+              }
+            ]
           }
         ]
       },
