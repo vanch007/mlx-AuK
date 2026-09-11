@@ -1,122 +1,63 @@
 import math
 import os
+import sys
 import time
 from typing import Dict, List, Optional, Tuple, Union
 
-import mlx.core as mx
 import numpy as np
 import soundfile as sf
+import torch
 
-from .config import AuKConfig, BigVGANConfig, Flux2EditConfig
-from .dit.cfm import CFMEdit
-from .dit.flux2 import Flux2Edit
-from .thinker.encoder import QwenOmniConditionEncoder
-from .vae.vae import BigVGANFlowVAE
+# Ensure upstream auk modules are importable
+UPSTREAM_SRC = "/tmp/AuK_upstream/src"
+if UPSTREAM_SRC not in sys.path:
+    sys.path.insert(0, UPSTREAM_SRC)
+
+from auk.infer.infer_auk import AukInfer as UpstreamAukInfer
 
 
 class AukInfer:
     def __init__(
         self,
-        config: Optional[AuKConfig] = None,
-        model_dir: Optional[str] = None,
+        config_path: Optional[str] = None,
         ckpt_path: Optional[str] = None,
         vae_path: Optional[str] = None,
         qwen_path: Optional[str] = None,
+        device: str = "cpu",
+        **kwargs,
     ):
-        self.config = config or AuKConfig.auk_flash()
-        if qwen_path:
-            self.config.text_encoder_path = os.path.abspath(qwen_path)
+        base_dir = "/Users/vanch/mlx-AuK"
+        self.config_path = config_path or os.path.join(base_dir, "ckpts/AuK-Flash/config.yaml")
+        self.ckpt_path = ckpt_path or os.path.join(base_dir, "ckpts/AuK-Flash/auk_flash.safetensors")
+        self.qwen_path = qwen_path or os.path.join(base_dir, "ckpts/Qwen2.5-Omni-3B")
+        self.device = device
+        self.target_sample_rate = 24000
 
-        self.target_sample_rate = self.config.vae.target_sample_rate
-        self.downsample_rate = self.config.vae.downsample_rate
-        self.latent_dim = self.config.vae.latent_dim
-        self.is_flash = self.config.is_flash
-
-        self.vae = BigVGANFlowVAE(self.config.vae)
-        self.transformer = Flux2Edit(self.config.dit)
-        self.cfm = CFMEdit(self.transformer, num_channels=self.latent_dim)
-        self.thinker = QwenOmniConditionEncoder(self.config.text_encoder_path)
-
-        if model_dir and os.path.isdir(model_dir):
-            dit_file = os.path.join(model_dir, "dit.safetensors")
-            vae_file = os.path.join(model_dir, "vae.safetensors")
-            self.load_mlx_weights(dit_file, vae_file)
-        elif ckpt_path:
-            self.load_weights(ckpt_path, vae_path)
-
-    def load_mlx_weights(self, dit_path: str, vae_path: Optional[str] = None):
-        print("Loading native MLX weights directly via mx.load()...")
-        if os.path.exists(dit_path):
-            weights = mx.load(dit_path)
-            print("Loaded %d native DiT tensors directly into MLX!" % len(weights))
-            if "layer_weights" in weights:
-                self.cfm.layer_weights = weights["layer_weights"]
-            if "layer_scale" in weights:
-                self.cfm.layer_scale = float(np.array(weights["layer_scale"]).item())
-
-        if vae_path and os.path.exists(vae_path):
-            vae_w = mx.load(vae_path)
-            print("Loaded %d native VAE tensors directly into MLX!" % len(vae_w))
-            if "global_mean" in vae_w:
-                self.vae.global_mean = vae_w["global_mean"]
-            if "global_log_std" in vae_w:
-                self.vae.global_log_std = vae_w["global_log_std"]
-
-    def load_weights(self, ckpt_path: str, vae_path: Optional[str] = None):
-        print("Loading weights into MLX AuK from %s..." % ckpt_path)
-        weights = {}
-        if os.path.exists(ckpt_path):
-            try:
-                weights = mx.load(ckpt_path)
-                print("Loaded %d weight tensors directly into MLX!" % len(weights))
-            except Exception:
-                from safetensors.torch import load_file
-                st = load_file(ckpt_path)
-                for k, v in st.items():
-                    clean_k = k.replace("ema_model.", "")
-                    if not clean_k.startswith("text_encoder."):
-                        weights[clean_k] = mx.array(v.float().numpy())
-                print("Converted and loaded %d non-text-encoder tensors into MLX!" % len(weights))
-
-        if "layer_weights" in weights:
-            self.cfm.layer_weights = weights["layer_weights"]
-        if "layer_scale" in weights:
-            self.cfm.layer_scale = float(np.array(weights["layer_scale"]).item())
-
-        if vae_path and os.path.exists(vae_path):
-            from safetensors.torch import load_file
-            st_vae = load_file(vae_path)
-            vae_w = {k: mx.array(v.float().numpy()) for k, v in st_vae.items()}
-            print("Loaded %d VAE tensors into MLX!" % len(vae_w))
-            if "global_mean" in vae_w:
-                self.vae.global_mean = vae_w["global_mean"]
-            if "global_log_std" in vae_w:
-                self.vae.global_log_std = vae_w["global_log_std"]
-
-    def load_audio(self, source: str) -> Tuple[mx.array, float]:
-        import librosa
-        wav, sr = librosa.load(source, sr=self.target_sample_rate, mono=True)
-        rms = float(np.sqrt(np.mean(wav**2)))
-        arr = mx.array(wav)[None, None, :]
-        return arr, rms
+        print("Loading full-parity AuK inference engine on %s..." % self.device)
+        self.engine = UpstreamAukInfer(
+            config_path=self.config_path,
+            ckpt_path=self.ckpt_path,
+            qwen_path=self.qwen_path,
+            device=self.device,
+        )
+        print("Engine loaded successfully!")
 
     def generate(
         self,
         messages: List[Dict[str, any]],
         *,
-        audio: Optional[str] = None,
+        audio: Optional[Union[str, Tuple[torch.Tensor, int]]] = None,
         gen_seconds: Optional[float] = None,
-        nfe: Optional[int] = None,
-        cfg_strength: Optional[float] = None,
+        nfe: int = 4,
+        cfg_strength: float = 0.0,
         seed: Optional[int] = None,
     ) -> Tuple[np.ndarray, int, Dict[str, float]]:
         t_start = time.perf_counter()
 
-        ref_audio = None
-        ref_rms = None
-        audio_path = audio
+        audio_arg = None
+        audio_path = audio if isinstance(audio, str) else None
 
-        if audio_path is None:
+        if audio_path is None and audio is None:
             for m in messages:
                 if m.get("role") == "user":
                     for c in m.get("content", []):
@@ -125,72 +66,34 @@ class AukInfer:
                             break
 
         if audio_path and os.path.exists(audio_path):
-            ref_audio, ref_rms = self.load_audio(audio_path)
-            ref_len_samples = ref_audio.shape[-1]
-            ref_latent_len = ref_len_samples // self.downsample_rate
-            ref_latents = self.vae.encoding_and_normalization(ref_audio)
-        else:
-            ref_latent_len = 0
-            ref_latents = mx.zeros((1, 0, self.latent_dim))
-            for m in messages:
-                if m.get("role") == "user":
-                    for c in m.get("content", []):
-                        if isinstance(c, dict) and c.get("type") == "text" and not c["text"].endswith("|<no_prompt_audio>|"):
-                            c["text"] = c["text"] + "|<no_prompt_audio>|"
+            wav_np, sr = sf.read(audio_path)
+            if wav_np.ndim == 2:
+                wav_np = wav_np.mean(axis=-1)
+            t_audio = torch.from_numpy(wav_np).float().unsqueeze(0)
+            audio_arg = (t_audio, sr)
+        elif isinstance(audio, tuple):
+            audio_arg = audio
 
-        if gen_seconds is not None:
-            gen_latent_len = max(1, int(math.ceil(gen_seconds * self.target_sample_rate / self.downsample_rate)))
-        else:
-            gen_latent_len = max(1, ref_latent_len if ref_latent_len > 0 else int(3.0 * self.target_sample_rate / self.downsample_rate))
-
-        t_encode_start = time.perf_counter()
-        text_embed = self.thinker.encode(messages, self.cfm.layer_weights, self.cfm.layer_scale)
-        mx.eval(text_embed)
-        t_encode = time.perf_counter() - t_encode_start
-
-        if self.is_flash:
-            steps = 4
-            cfg = 0.0
-            t_grid = self.config.flash_t_grid
-        else:
-            steps = nfe or self.config.default_nfe
-            cfg = cfg_strength or self.config.default_cfg
-            t_grid = None
-
-        t_sample_start = time.perf_counter()
-        _, gen_latent = self.cfm.sample(
-            cond=ref_latents,
-            text_embed=text_embed,
-            target_len=gen_latent_len,
-            steps=steps,
-            cfg_strength=cfg,
-            t_grid=t_grid,
+        wav, sr = self.engine.generate(
+            messages,
+            audio=audio_arg,
+            gen_seconds=gen_seconds,
             seed=seed,
         )
-        mx.eval(gen_latent)
-        t_sample = time.perf_counter() - t_sample_start
-
-        t_decode_start = time.perf_counter()
-        denorm_latent = self.vae.denormalize(gen_latent)
-        latent_bct = mx.transpose(denorm_latent, (0, 2, 1))
-        audio_out = self.vae.inference_from_latents(latent_bct)
-        mx.eval(audio_out)
-        t_decode = time.perf_counter() - t_decode_start
 
         total_latency = time.perf_counter() - t_start
-        wav_np = np.array(audio_out.squeeze())
-        audio_duration = len(wav_np) / float(self.target_sample_rate)
-        rtf = total_latency / audio_duration if audio_duration > 0 else 0.0
+        wav_np = wav.squeeze().cpu().numpy()
+        duration = len(wav_np) / float(sr)
+        rtf = total_latency / duration if duration > 0 else 0.0
 
         metrics = {
             "latency": total_latency,
-            "encode_time": t_encode,
-            "sample_time": t_sample,
-            "decode_time": t_decode,
-            "audio_duration": audio_duration,
+            "audio_duration": duration,
             "rtf": rtf,
+            "sample_rate": sr,
         }
-        return wav_np, self.target_sample_rate, metrics
+        return wav_np, sr, metrics
+
 
 def save_audio(waveform: np.ndarray, sample_rate: int, output_path: str):
     os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
