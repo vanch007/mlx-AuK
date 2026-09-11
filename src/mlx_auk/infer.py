@@ -18,6 +18,7 @@ class AukInfer:
     def __init__(
         self,
         config: Optional[AuKConfig] = None,
+        model_dir: Optional[str] = None,
         ckpt_path: Optional[str] = None,
         vae_path: Optional[str] = None,
         qwen_path: Optional[str] = None,
@@ -31,14 +32,35 @@ class AukInfer:
         self.latent_dim = self.config.vae.latent_dim
         self.is_flash = self.config.is_flash
 
-        print("Initializing MLX AuK (Flash=%s)..." % self.is_flash)
         self.vae = BigVGANFlowVAE(self.config.vae)
         self.transformer = Flux2Edit(self.config.dit)
         self.cfm = CFMEdit(self.transformer, num_channels=self.latent_dim)
         self.thinker = QwenOmniConditionEncoder(self.config.text_encoder_path)
 
-        if ckpt_path:
+        if model_dir and os.path.isdir(model_dir):
+            dit_file = os.path.join(model_dir, "dit.safetensors")
+            vae_file = os.path.join(model_dir, "vae.safetensors")
+            self.load_mlx_weights(dit_file, vae_file)
+        elif ckpt_path:
             self.load_weights(ckpt_path, vae_path)
+
+    def load_mlx_weights(self, dit_path: str, vae_path: Optional[str] = None):
+        print("Loading native MLX weights directly via mx.load()...")
+        if os.path.exists(dit_path):
+            weights = mx.load(dit_path)
+            print("Loaded %d native DiT tensors directly into MLX!" % len(weights))
+            if "layer_weights" in weights:
+                self.cfm.layer_weights = weights["layer_weights"]
+            if "layer_scale" in weights:
+                self.cfm.layer_scale = float(np.array(weights["layer_scale"]).item())
+
+        if vae_path and os.path.exists(vae_path):
+            vae_w = mx.load(vae_path)
+            print("Loaded %d native VAE tensors directly into MLX!" % len(vae_w))
+            if "global_mean" in vae_w:
+                self.vae.global_mean = vae_w["global_mean"]
+            if "global_log_std" in vae_w:
+                self.vae.global_log_std = vae_w["global_log_std"]
 
     def load_weights(self, ckpt_path: str, vae_path: Optional[str] = None):
         print("Loading weights into MLX AuK from %s..." % ckpt_path)
@@ -58,10 +80,8 @@ class AukInfer:
 
         if "layer_weights" in weights:
             self.cfm.layer_weights = weights["layer_weights"]
-            print("Set CFM layer_weights shape:", self.cfm.layer_weights.shape)
         if "layer_scale" in weights:
             self.cfm.layer_scale = float(np.array(weights["layer_scale"]).item())
-            print("Set CFM layer_scale:", self.cfm.layer_scale)
 
         if vae_path and os.path.exists(vae_path):
             from safetensors.torch import load_file
