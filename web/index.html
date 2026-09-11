@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLX-AuK vs 官方原版 Demo 全量对比与 RTF 评测看板</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --card-border: #30363d;
+      --text: #f0f6fc;
+      --text-muted: #8b949e;
+      --accent: #2f81f7;
+      --accent-hover: #58a6ff;
+      --green-bg: #0e3b1c;
+      --green-text: #3fb950;
+      --blue-bg: #112d5e;
+      --blue-text: #58a6ff;
+      --orange-bg: #4d2b09;
+      --orange-text: #d29922;
+      --tag-bg: #21262d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+    .header {
+      background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--card-border);
+      padding: 40px 24px 30px;
+      text-align: center;
+    }
+    .title-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .badge-primary {
+      background: var(--blue-bg);
+      color: var(--blue-text);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(56, 139, 253, 0.4);
+    }
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 820px;
+      margin: 0 auto 24px;
+    }
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .stat-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 10px 18px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 140px;
+    }
+    .stat-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-hover);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      padding: 12px 0 16px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 24px;
+    }
+    .pills-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .pill-btn {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+    .pill-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+    .pill-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .subgroup-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .sub-pill-btn {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sub-pill-btn:hover {
+      color: var(--text);
+      background: var(--tag-bg);
+    }
+    .sub-pill-btn.active {
+      background: var(--tag-bg);
+      color: var(--accent-hover);
+      border-color: var(--card-border);
+      font-weight: 600;
+    }
+    .search-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 16px;
+    }
+    .search-input {
+      flex: 1;
+      max-width: 400px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .sample-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      transition: border-color 0.15s ease;
+    }
+    .card:hover {
+      border-color: #58a6ff;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .tag-rtf-good {
+      background: var(--green-bg);
+      color: var(--green-text);
+      border: 1px solid rgba(63, 185, 80, 0.4);
+    }
+    .tag-rtf-ok {
+      background: var(--blue-bg);
+      color: var(--blue-text);
+      border: 1px solid rgba(88, 166, 255, 0.4);
+    }
+    .tag-rtf-warn {
+      background: var(--orange-bg);
+      color: var(--orange-text);
+      border: 1px solid rgba(210, 153, 34, 0.4);
+    }
+    .tag-neutral {
+      background: var(--tag-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+    }
+    .prompt-box {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #c9d1d9;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .prompt-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      display: block;
+    }
+    .audio-comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      background: #0d1117;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .audio-slot {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .slot-title {
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .slot-title.src { color: #8b949e; }
+    .slot-title.official { color: #f0883e; }
+    .slot-title.mlx { color: #3fb950; }
+    audio {
+      width: 100%;
+      height: 38px;
+      outline: none;
+      border-radius: 6px;
+    }
+    .multi-outputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .chip-btn {
+      font-size: 11px;
+      background: #21262d;
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .chip-btn.active {
+      background: #388bfd;
+      color: #fff;
+      border-color: #388bfd;
+    }
+    .footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 40px;
+    }
+    .footer a {
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="title-row">
+      <span class="badge-primary">Apple Silicon MLX</span>
+      <h1>MLX-AuK 官方 Demo 全量对比与 RTF 评测看板</h1>
+    </div>
+    <p class="subtitle">
+      1:1 复刻腾讯混元 AuK 统一语音大模型。在本地 Apple Silicon (128GB Unified Memory) 跑通
+      <a href="https://auk-project.github.io/" target="_blank" style="color:var(--accent-hover); text-decoration:none;">auk-project.github.io</a>
+      全部 5 大分类家族、16 个功能组的 62 个完整测试样本，提供输入原音频、官方原版输出与 MLX-AuK 本地生成音频的无缝对比试听。
+    </p>
+
+    <div class="stats-bar">
+      <div class="stat-pill">
+        <span class="stat-val">62 / 62</span>
+        <span class="stat-label">官方测试用例 100% 通过</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val">0.792</span>
+        <span class="stat-label">全量 62 样本平均 RTF</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val">1.26x</span>
+        <span class="stat-label">端到端超实时生成倍速</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val">0.081</span>
+        <span class="stat-label">平均波形能量 (RMS 正常)</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-val">Metal GPU</span>
+        <span class="stat-label">Apple Silicon 原生加速</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-bar">
+    <div class="pills-group" id="family-pills">
+      <button class="pill-btn active" data-family="all">������ 全部用例 (62)</button>
+    </div>
+    <div class="subgroup-pills" id="group-pills"></div>
+  </div>
+
+  <main class="container">
+    <div class="search-row">
+      <input type="text" class="search-input" id="search-input" placeholder="������ 搜索任务、台词或样本 ID (例如: 乱世枭雄, 寂寞, zs-tts)...">
+      <span style="font-size:13px; color:var(--text-muted);" id="sample-count-badge">显示 62 个样本</span>
+    </div>
+
+    <div class="sample-grid" id="samples-container"></div>
+
+    <footer class="footer">
+      <p>
+        MLX-AuK · Standalone Apple Silicon Audio Foundation Model ·
+        <a href="https://github.com/Tencent-Hunyuan/AuK" target="_blank">Upstream Tencent-Hunyuan/AuK</a> ·
+        <a href="https://auk-project.github.io/" target="_blank">Official Demo Page</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    let catalogData = [];
+    let currentFamily = "all";
+    let currentGroup = "all";
+    let searchQuery = "";
+
+    async function init() {
+      const res = await fetch("data.json");
+      catalogData = await res.json();
+      buildNavigation();
+      renderSamples();
+
+      document.getElementById("search-input").addEventListener("input", (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        renderSamples();
+      });
+    }
+
+    function buildNavigation() {
+      const famContainer = document.getElementById("family-pills");
+      catalogData.forEach(fam => {
+        let count = 0;
+        fam.groups.forEach(g => count += g.samples.length);
+
+        const btn = document.createElement("button");
+        btn.className = "pill-btn";
+        btn.dataset.family = fam.id;
+        btn.textContent = fam.name + " (" + count + ")";
+        btn.onclick = () => {
+          document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFamily = fam.id;
+          currentGroup = "all";
+          updateSubgroups(fam.id);
+          renderSamples();
+        };
+        famContainer.appendChild(btn);
+      });
+
+      updateSubgroups("all");
+    }
+
+    function updateSubgroups(familyId) {
+      const groupContainer = document.getElementById("group-pills");
+      groupContainer.innerHTML = "";
+
+      const allBtn = document.createElement("button");
+      allBtn.className = "sub-pill-btn active";
+      allBtn.textContent = "全部子类";
+      allBtn.onclick = () => {
+        document.querySelectorAll(".sub-pill-btn").forEach(b => b.classList.remove("active"));
+        allBtn.classList.add("active");
+        currentGroup = "all";
+        renderSamples();
+      };
+      groupContainer.appendChild(allBtn);
+
+      const targetGroups = [];
+      catalogData.forEach(fam => {
+        if (familyId === "all" || fam.id === familyId) {
+          fam.groups.forEach(g => targetGroups.push(g));
+        }
+      });
+
+      targetGroups.forEach(g => {
+        const btn = document.createElement("button");
+        btn.className = "sub-pill-btn";
+        btn.dataset.group = g.id;
+        btn.textContent = g.title + " (" + g.samples.length + ")";
+        btn.onclick = () => {
+          document.querySelectorAll(".sub-pill-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentGroup = g.id;
+          renderSamples();
+        };
+        groupContainer.appendChild(btn);
+      });
+    }
+
+    function renderSamples() {
+      const container = document.getElementById("samples-container");
+      container.innerHTML = "";
+
+      let visibleSamples = [];
+
+      catalogData.forEach(fam => {
+        if (currentFamily !== "all" && fam.id !== currentFamily) return;
+        fam.groups.forEach(grp => {
+          if (currentGroup !== "all" && grp.id !== currentGroup) return;
+          grp.samples.forEach(sample => {
+            const matchSearch = !searchQuery ||
+              sample.id.toLowerCase().includes(searchQuery) ||
+              sample.label.toLowerCase().includes(searchQuery) ||
+              sample.instruction.toLowerCase().includes(searchQuery);
+
+            if (matchSearch) {
+              visibleSamples.push({ sample, grp, fam });
+            }
+          });
+        });
+      });
+
+      document.getElementById("sample-count-badge").textContent = "显示 " + visibleSamples.length + " 个样本";
+
+      if (visibleSamples.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 60px 0; color:var(--text-muted);">没有匹配的测试样本</div>';
+        return;
+      }
+
+      visibleSamples.forEach(({ sample, grp, fam }) => {
+        const m = sample.metrics;
+        let rtfClass = m.rtf < 0.5 ? "tag-rtf-good" : (m.rtf < 1.0 ? "tag-rtf-ok" : "tag-rtf-warn");
+        let speedup = (1.0 / m.rtf).toFixed(2);
+        let rtfBadge = "⚡ RTF: " + m.rtf.toFixed(3) + " (" + speedup + "x " + (m.rtf < 1.0 ? "超实时" : "生成") + ")";
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        let officialSlotHtml = "";
+        if (sample.official_audio) {
+          officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">������️ 官方原版 AuK 输出</span><audio controls preload="none" src="' + sample.official_audio + '"></audio></div>';
+        } else if (sample.official_multi && sample.official_multi.length > 0) {
+          const first = sample.official_multi[0];
+          officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">������️ 官方原版 (' + first.label + ')</span><audio controls preload="none" src="' + first.url + '" id="audio-off-' + sample.id + '"></audio><div class="multi-outputs">' +
+            sample.official_multi.map((item, idx) => '<button class="chip-btn ' + (idx===0?'active':'') + '" onclick="switchTrack(\'' + sample.id + '\', \'' + item.url + '\', this)">' + item.label + '</button>').join("") +
+            '</div></div>';
+        } else {
+          officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">������️ 官方原版</span><div style="font-size:12px; color:var(--text-muted); padding: 8px;">无独立单轨 (滑块演示)</div></div>';
+        }
+
+        let inputSlotHtml = sample.input_audio ?
+          '<div class="audio-slot"><span class="slot-title src">������ 参考输入原音频</span><audio controls preload="none" src="' + sample.input_audio + '"></audio></div>' :
+          '<div class="audio-slot"><span class="slot-title src">������ 输入状态</span><div style="font-size:12px; color:var(--text-muted); padding: 8px;">纯文本角色描述 (无参考音频)</div></div>';
+
+        let mlxSlotHtml = '<div class="audio-slot"><span class="slot-title mlx">⚡ 本项目 MLX-AuK 本地生成</span><audio controls preload="none" src="' + sample.mlx_audio + '"></audio></div>';
+
+        card.innerHTML = '<div class="card-header">' +
+          '<div class="card-title"><span>' + grp.title + '</span><span style="font-size:13px; color:var(--text-muted); font-weight:normal;">/ ' + sample.label + '</span></div>' +
+          '<div class="card-meta">' +
+            '<span class="tag ' + rtfClass + '">' + rtfBadge + '</span>' +
+            '<span class="tag tag-neutral">音频: ' + m.duration.toFixed(2) + 's</span>' +
+            '<span class="tag tag-neutral">耗时: ' + m.latency.toFixed(3) + 's</span>' +
+            '<span class="tag tag-neutral">RMS: ' + m.rms.toFixed(4) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="prompt-box"><span class="prompt-label">自然语言指令 / 提示词</span>' + escapeHtml(sample.instruction) + '</div>' +
+        '<div class="audio-comparison-grid">' + inputSlotHtml + officialSlotHtml + mlxSlotHtml + '</div>';
+
+        container.appendChild(card);
+      });
+    }
+
+    function switchTrack(sampleId, url, btn) {
+      const audio = document.getElementById("audio-off-" + sampleId);
+      if (audio) {
+        audio.src = url;
+        audio.play();
+      }
+      btn.parentElement.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    function escapeHtml(text) {
+      if (!text) return "";
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>

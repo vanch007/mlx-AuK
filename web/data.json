@@ -1,0 +1,1574 @@
+[
+  {
+    "id": "speech-generation",
+    "name": "Text-to-Speech",
+    "groups": [
+      {
+        "id": "instruct-tts",
+        "title": "Instruct TTS",
+        "subtitle": "Voice described in natural language, no reference audio needed",
+        "samples": [
+          {
+            "id": "instruct-tts-1",
+            "label": "Instruct TTS · Mandarin",
+            "instruction": "Say the following in the voice described here: “一位雄才大略、性格复杂的乱世枭雄，以略显沙哑却极有穿透力的中年男声说话。语气自信、果断，带着审视人心的敏锐感。讲话时节奏变化明显，可以先压低声音缓缓铺垫，再突然加重关键字。既有豪迈，也隐约带着危险与猜疑”",
+            "transcript": "宁可我负天下人，休教天下人负我。",
+            "input_audio": null,
+            "official_audio": "../assets/official_outputs/instruct-tts-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/instruct-tts_instruct-tts-1.wav",
+            "metrics": {
+              "duration": 4.0,
+              "latency": 1.389,
+              "rtf": 0.347,
+              "rms": 0.096
+            }
+          },
+          {
+            "id": "instruct-tts-2",
+            "label": "Instruct TTS · Mandarin",
+            "instruction": "Say the following in the voice described here: “一位中年女性，在面对面质问多年前抛弃自己的人时，用沙哑、干涩的嗓音倾诉三十年压抑的恨意与委屈，仿佛眼泪已经流尽。语速缓慢而沉稳，字字清晰冰冷，整体音量中等偏低，但说到愤恨处声音微微发颤、压抑着哽咽，音色苍凉而有力，句尾带着渗骨的决绝，最后一句陡然拔高、几乎用尽全身力气砸出来”",
+            "transcript": "哼，我的眼泪早哭干了，我没有委屈，我有的是恨，是悔，是三十年一天一天我自己受的苦。你大概已经忘了你做的事了！",
+            "input_audio": null,
+            "official_audio": "../assets/official_outputs/instruct-tts-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/instruct-tts_instruct-tts-2.wav",
+            "metrics": {
+              "duration": 4.0,
+              "latency": 1.062,
+              "rtf": 0.265,
+              "rms": 0.1155
+            }
+          },
+          {
+            "id": "instruct-tts-3",
+            "label": "Instruct TTS · English",
+            "instruction": "Say the following in the voice described here: “A classic Shakespearean villain savoring the moment just before unveiling the truth. A rich, theatrically charged baritone with full chest resonance; unhurried pacing with deliberate pauses and emphases; consonants rolled with exaggeration, diction crisp and staged. The tone feigns sweetness, almost doting, then snaps cold between the words — sharp as a blade, every syllable laced with dangerous, delighted smugness”",
+            "transcript": "You see, my dear, the trap was never meant for you. It was always meant for him.",
+            "input_audio": null,
+            "official_audio": "../assets/official_outputs/instruct-tts-3-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/instruct-tts_instruct-tts-3.wav",
+            "metrics": {
+              "duration": 4.0,
+              "latency": 0.96,
+              "rtf": 0.24,
+              "rms": 0.127
+            }
+          },
+          {
+            "id": "instruct-tts-4",
+            "label": "Instruct TTS · English",
+            "instruction": "Say the following in the voice described here: “As if delivering devastating news at a funeral — a soft, choked voice forcing back tears, speech breaking between pauses, each word heavier than the last, the final line torn open by grief, trembling with a sob that can no longer be held down. Slow, low intonation with unsteady breath; clarity slightly eroded by the choking. The overall mood is solemn and mournful”",
+            "transcript": "He always said he'd come back. He always kept his word. Until now.",
+            "input_audio": null,
+            "official_audio": "../assets/official_outputs/instruct-tts-4-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/instruct-tts_instruct-tts-4.wav",
+            "metrics": {
+              "duration": 4.0,
+              "latency": 0.947,
+              "rtf": 0.237,
+              "rms": 0.0798
+            }
+          }
+        ]
+      },
+      {
+        "id": "zero-shot-tts",
+        "title": "Zero-Shot TTS",
+        "subtitle": "Voice cloned from a reference clip",
+        "samples": [
+          {
+            "id": "zs-tts-1",
+            "label": "Zero-Shot TTS · Mandarin",
+            "instruction": "Say the following in the reference speaker's voice",
+            "transcript": "有些事情只有失去了才知道珍惜，有些人转身以后，就再也回不来了",
+            "input_audio": "../assets/demo_assets/zs-tts-1-input.wav",
+            "official_audio": "../assets/official_outputs/zs-tts-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/zero-shot-tts_zs-tts-1.wav",
+            "metrics": {
+              "duration": 5.0,
+              "latency": 2.338,
+              "rtf": 0.468,
+              "rms": 0.0917
+            }
+          },
+          {
+            "id": "zs-tts-2",
+            "label": "Zero-Shot TTS · Mandarin",
+            "instruction": "Say the following in the reference speaker's voice",
+            "transcript": "谁在意啊？谁邀请你了？别干这种丢人的事！",
+            "input_audio": "../assets/demo_assets/zs-tts-2-input.wav",
+            "official_audio": "../assets/official_outputs/zs-tts-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/zero-shot-tts_zs-tts-2.wav",
+            "metrics": {
+              "duration": 5.08,
+              "latency": 1.965,
+              "rtf": 0.387,
+              "rms": 0.1034
+            }
+          },
+          {
+            "id": "zs-tts-3",
+            "label": "Zero-Shot TTS · English",
+            "instruction": "Say the following in the reference speaker's voice",
+            "transcript": "If not even light can escape the event horizon, how do you think you’ll escape me?",
+            "input_audio": "../assets/demo_assets/zs-tts-3-input.wav",
+            "official_audio": "../assets/official_outputs/zs-tts-3-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/zero-shot-tts_zs-tts-3.wav",
+            "metrics": {
+              "duration": 7.12,
+              "latency": 2.498,
+              "rtf": 0.351,
+              "rms": 0.1038
+            }
+          },
+          {
+            "id": "zs-tts-4",
+            "label": "Zero-Shot TTS · English",
+            "instruction": "Say the following in the reference speaker's voice",
+            "transcript": "Land is the only thing in the world worth working for, worth fighting for, worth dying for. Because it’s the only thing that lasts.",
+            "input_audio": "../assets/demo_assets/zs-tts-4-input.wav",
+            "official_audio": "../assets/official_outputs/zs-tts-4-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/zero-shot-tts_zs-tts-4.wav",
+            "metrics": {
+              "duration": 2.76,
+              "latency": 1.722,
+              "rtf": 0.624,
+              "rms": 0.0717
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "content-editing",
+    "name": "Content Editing",
+    "groups": [
+      {
+        "id": "content-edit-speech",
+        "title": "Speech Content Editing",
+        "subtitle": "Insert / Delete / Replace · spoken words",
+        "samples": [
+          {
+            "id": "ce-zh-1",
+            "label": "Content Editing · Mandarin",
+            "instruction": "",
+            "transcript": "愚夫，久闻先生大名如雷贯耳，曾两次进谒不得相见，已留书一封，不知可曾阅过？南阳野人，疏懒成性，吕蒙将军枉临，不胜惭愧。将军，请。先生请。二弟、三弟在此等候。",
+            "input_audio": "../assets/demo_assets/ce-zh-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/ce-zh-1-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../assets/official_outputs/ce-zh-1-add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../assets/official_outputs/ce-zh-1-delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../assets/official_outputs/ce-zh-1-change.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-zh-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 5.28,
+              "rtf": 0.66,
+              "rms": 0.0735
+            }
+          },
+          {
+            "id": "ce-zh-2",
+            "label": "Content Editing · Mandarin",
+            "instruction": "",
+            "transcript": "等仗打完了，我赏给你半斤地瓜烧。啊，不过你得好好琢磨琢磨，怎么用两发炮弹，把敌人的指挥部给我打掉了。",
+            "input_audio": "../assets/demo_assets/ce-zh-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/ce-zh-2-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../assets/official_outputs/ce-zh-2-add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../assets/official_outputs/ce-zh-2-delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../assets/official_outputs/ce-zh-2-change.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-zh-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 3.574,
+              "rtf": 0.447,
+              "rms": 0.06
+            }
+          },
+          {
+            "id": "ce-en-1",
+            "label": "Content Editing · English",
+            "instruction": "",
+            "transcript": "You know, thank you guys for all your sacrifice. You know, for all the hours I spend in the gym working and training, and Vanessa, you holding down the family the way that you have, I can't. There's no way I can thank you enough for that. So from the bottom of my heart, thank you. And what can I say? Mamba out.",
+            "input_audio": "../assets/demo_assets/ce-en-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/ce-en-1-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../assets/official_outputs/ce-en-1-add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../assets/official_outputs/ce-en-1-delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../assets/official_outputs/ce-en-1-change.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-en-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 4.967,
+              "rtf": 0.621,
+              "rms": 0.0837
+            }
+          },
+          {
+            "id": "ce-en-2",
+            "label": "Content Editing · English",
+            "instruction": "",
+            "transcript": "Do you think the biggest victory is not fighting for what we want, but accepting what we cannot have? In some ways, like I was better equipped to answer that question when I was in my twenty s. Change is going to be a constant. That's such a great question.",
+            "input_audio": "../assets/demo_assets/ce-en-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/ce-en-2-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../assets/official_outputs/ce-en-2-add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../assets/official_outputs/ce-en-2-delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../assets/official_outputs/ce-en-2-change.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-en-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 3.09,
+              "rtf": 0.386,
+              "rms": 0.0676
+            }
+          }
+        ]
+      },
+      {
+        "id": "vocal-edit",
+        "title": "Vocal Edit",
+        "subtitle": "Insert / Delete / Replace · sung lyrics",
+        "samples": [
+          {
+            "id": "vocaledit-zh-1",
+            "label": "Vocal Edit · Mandarin",
+            "instruction": "Replace “寂寞” with “疯狂” in the lyrics",
+            "transcript": "这是今天最寂寞的时候，太阳照着你好温柔",
+            "input_audio": "../assets/demo_assets/vocaledit-zh-1-input.wav",
+            "official_audio": "../assets/official_outputs/vocaledit-zh-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/vocal-edit_vocaledit-zh-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 3.117,
+              "rtf": 0.39,
+              "rms": 0.0794
+            }
+          },
+          {
+            "id": "vocaledit-zh-2",
+            "label": "Vocal Edit · Mandarin",
+            "instruction": "Replace “恩怨” with “笑容” in the lyrics",
+            "transcript": "当恩怨搁一半，我怎么圈揽。看灯笼血红染，寻仇已太晚",
+            "input_audio": "../assets/demo_assets/vocaledit-zh-2-input.wav",
+            "official_audio": "../assets/official_outputs/vocaledit-zh-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/vocal-edit_vocaledit-zh-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 3.572,
+              "rtf": 0.447,
+              "rms": 0.0953
+            }
+          },
+          {
+            "id": "vocaledit-en-2",
+            "label": "Vocal Edit · English",
+            "instruction": "Replace “can't be tamed” with “are the same” in the lyrics",
+            "transcript": "Come on, get on up. We're wild and we can't be tamed. And we're turning the floor into a zoo.",
+            "input_audio": "../assets/demo_assets/vocaledit-en-2-input.wav",
+            "official_audio": "../assets/official_outputs/vocaledit-en-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/vocal-edit_vocaledit-en-2.wav",
+            "metrics": {
+              "duration": 7.58,
+              "latency": 2.819,
+              "rtf": 0.372,
+              "rms": 0.128
+            }
+          },
+          {
+            "id": "vocaledit-en-1",
+            "label": "Vocal Edit · English",
+            "instruction": "Replace “rear view” with “like you” in the lyrics",
+            "transcript": "They ain't gon' respect you 'til they fear you. Switching lanes, but they used to be in your rear view.",
+            "input_audio": "../assets/demo_assets/vocaledit-en-1-input.wav",
+            "official_audio": "../assets/official_outputs/vocaledit-en-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/vocal-edit_vocaledit-en-1.wav",
+            "metrics": {
+              "duration": 5.74,
+              "latency": 2.452,
+              "rtf": 0.427,
+              "rms": 0.1063
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "enhancement-separation",
+    "name": "Enhancement and Separation",
+    "groups": [
+      {
+        "id": "enhance-speech",
+        "title": "Enhance Speech",
+        "subtitle": "Remove noise, restore clarity",
+        "samples": [
+          {
+            "id": "se-zh-1",
+            "label": "Enhance Speech · Mandarin",
+            "instruction": "Remove the background noise and make the voice cleaner",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/se-zh-2-input.wav",
+            "official_audio": "../assets/official_outputs/se-zh-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/enhance-speech_se-zh-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 2.77,
+              "rtf": 0.346,
+              "rms": 0.0761
+            }
+          },
+          {
+            "id": "se-zh-2",
+            "label": "Enhance Speech · Mandarin",
+            "instruction": "Remove the background noise and make the voice cleaner",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/se-zh-1-input.wav",
+            "official_audio": "../assets/official_outputs/se-zh-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/enhance-speech_se-zh-2.wav",
+            "metrics": {
+              "duration": 5.0,
+              "latency": 1.699,
+              "rtf": 0.34,
+              "rms": 0.0727
+            }
+          },
+          {
+            "id": "se-en-1",
+            "label": "Enhance Speech · English",
+            "instruction": "Remove the background noise and make the voice clearer",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/se-en-1-input.wav",
+            "official_audio": "../assets/official_outputs/se-en-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/enhance-speech_se-en-1.wav",
+            "metrics": {
+              "duration": 2.94,
+              "latency": 1.743,
+              "rtf": 0.593,
+              "rms": 0.0761
+            }
+          },
+          {
+            "id": "se-en-2",
+            "label": "Enhance Speech · English",
+            "instruction": "Clean up the audio and remove the static",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/se-en-2-input.wav",
+            "official_audio": "../assets/official_outputs/se-en-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/enhance-speech_se-en-2.wav",
+            "metrics": {
+              "duration": 3.6,
+              "latency": 1.857,
+              "rtf": 0.516,
+              "rms": 0.0162
+            }
+          }
+        ]
+      },
+      {
+        "id": "separate-speech",
+        "title": "Separate Speech",
+        "subtitle": "Isolate one speaker by content or by speaking order",
+        "samples": [
+          {
+            "id": "zh-1",
+            "label": "Separate Speech · Mandarin",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/zh-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/zh-1-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../assets/official_outputs/zh-1-content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../assets/official_outputs/zh-1-number.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/separate-speech_zh-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 4.344,
+              "rtf": 0.543,
+              "rms": 0.0272
+            }
+          },
+          {
+            "id": "zh-2",
+            "label": "Separate Speech · Mandarin",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/zh-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/zh-2-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../assets/official_outputs/zh-2-content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../assets/official_outputs/zh-2-number.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/separate-speech_zh-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 5.747,
+              "rtf": 0.718,
+              "rms": 0.0856
+            }
+          },
+          {
+            "id": "en-1",
+            "label": "Separate Speech · English",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/en-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/en-1-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../assets/official_outputs/en-1-content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../assets/official_outputs/en-1-number.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/separate-speech_en-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 6.45,
+              "rtf": 0.806,
+              "rms": 0.0715
+            }
+          },
+          {
+            "id": "en-2",
+            "label": "Separate Speech · English",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/en-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/en-2-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../assets/official_outputs/en-2-content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../assets/official_outputs/en-2-number.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/separate-speech_en-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 5.704,
+              "rtf": 0.713,
+              "rms": 0.061
+            }
+          }
+        ]
+      },
+      {
+        "id": "extract-vocals",
+        "title": "Extract Vocals",
+        "subtitle": "Separate the singing voice from the accompaniment",
+        "samples": [
+          {
+            "id": "ev-1",
+            "label": "Extract Vocals · Mandarin",
+            "instruction": "Extract the vocals and remove the accompaniment",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vocal-2-input.wav",
+            "official_audio": "../assets/official_outputs/vocal-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/extract-vocals_ev-1.wav",
+            "metrics": {
+              "duration": 7.58,
+              "latency": 2.842,
+              "rtf": 0.375,
+              "rms": 0.0498
+            }
+          },
+          {
+            "id": "ev-2",
+            "label": "Extract Vocals · Mandarin",
+            "instruction": "Extract the vocals and remove the accompaniment",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vocal-4-input.wav",
+            "official_audio": "../assets/official_outputs/vocal-4-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/extract-vocals_ev-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 6.089,
+              "rtf": 0.761,
+              "rms": 0.0253
+            }
+          },
+          {
+            "id": "ev-3",
+            "label": "Extract Vocals · English",
+            "instruction": "Extract the vocals and remove the accompaniment",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vocal-1-input.wav",
+            "official_audio": "../assets/official_outputs/vocal-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/extract-vocals_ev-3.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 3.467,
+              "rtf": 0.433,
+              "rms": 0.0376
+            }
+          },
+          {
+            "id": "ev-4",
+            "label": "Extract Vocals · English",
+            "instruction": "Extract the vocals and remove the accompaniment",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vocal-3-input.wav",
+            "official_audio": "../assets/official_outputs/vocal-3-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/extract-vocals_ev-4.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 6.253,
+              "rtf": 0.782,
+              "rms": 0.0146
+            }
+          }
+        ]
+      },
+      {
+        "id": "super-resolution",
+        "title": "Improve Quality",
+        "subtitle": "Super-resolution / bandwidth extension",
+        "samples": [
+          {
+            "id": "sr-zh-1",
+            "label": "Improve Quality · Mandarin",
+            "instruction": "Improve the audio quality and make it clearer",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/sr-zh-1-input.wav",
+            "official_audio": "../assets/official_outputs/sr-zh-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/super-resolution_sr-zh-1.wav",
+            "metrics": {
+              "duration": 4.3,
+              "latency": 2.274,
+              "rtf": 0.529,
+              "rms": 0.1026
+            }
+          },
+          {
+            "id": "sr-zh-2",
+            "label": "Improve Quality · Mandarin",
+            "instruction": "Improve the audio quality and make it clearer",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/sr-zh-2-input.wav",
+            "official_audio": "../assets/official_outputs/sr-zh-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/super-resolution_sr-zh-2.wav",
+            "metrics": {
+              "duration": 4.82,
+              "latency": 2.513,
+              "rtf": 0.521,
+              "rms": 0.0884
+            }
+          },
+          {
+            "id": "sr-en-1",
+            "label": "Improve Quality · English",
+            "instruction": "Improve the audio quality and make it clearer",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/sr-en-1-input.wav",
+            "official_audio": "../assets/official_outputs/sr-en-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/super-resolution_sr-en-1.wav",
+            "metrics": {
+              "duration": 2.94,
+              "latency": 1.167,
+              "rtf": 0.397,
+              "rms": 0.0821
+            }
+          },
+          {
+            "id": "sr-en-2",
+            "label": "Improve Quality · English",
+            "instruction": "Improve the audio quality and make it clearer",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/sr-en-2-input.wav",
+            "official_audio": "../assets/official_outputs/sr-en-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/super-resolution_sr-en-2.wav",
+            "metrics": {
+              "duration": 2.62,
+              "latency": 1.75,
+              "rtf": 0.668,
+              "rms": 0.0641
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "paralinguistic",
+    "name": "Paralinguistic Editing",
+    "groups": [
+      {
+        "id": "emotion-edit",
+        "title": "Emotion Edit",
+        "subtitle": "Slide the emoji to change the emotion",
+        "samples": [
+          {
+            "id": "emo-zh-1",
+            "label": "Emotion Edit · Mandarin",
+            "instruction": "Say this in a <emotion> tone",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/zh-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "😄 happy",
+                "url": "../assets/official_outputs/zh-1-happy.wav"
+              },
+              {
+                "label": "😭 sad",
+                "url": "../assets/official_outputs/zh-1-sad.wav"
+              },
+              {
+                "label": "😡 angry",
+                "url": "../assets/official_outputs/zh-1-input.wav"
+              },
+              {
+                "label": "😱 afraid",
+                "url": "../assets/official_outputs/zh-1-afraid.wav"
+              },
+              {
+                "label": "😐 calm",
+                "url": "../assets/official_outputs/zh-1-calm.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-zh-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 4.57,
+              "rtf": 0.571,
+              "rms": 0.0261
+            }
+          },
+          {
+            "id": "emo-zh-2",
+            "label": "Emotion Edit · Mandarin",
+            "instruction": "Say this in a <emotion> tone",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/zh-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "😄 happy",
+                "url": "../assets/official_outputs/zh-2-happy.wav"
+              },
+              {
+                "label": "😭 sad",
+                "url": "../assets/official_outputs/zh-2-sad.wav"
+              },
+              {
+                "label": "😡 angry",
+                "url": "../assets/official_outputs/zh-2-angry.wav"
+              },
+              {
+                "label": "😱 afraid",
+                "url": "../assets/official_outputs/zh-2-afraid.wav"
+              },
+              {
+                "label": "😐 calm",
+                "url": "../assets/official_outputs/zh-2-input.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-zh-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 6.452,
+              "rtf": 0.807,
+              "rms": 0.0921
+            }
+          },
+          {
+            "id": "emo-en-1",
+            "label": "Emotion Edit · English",
+            "instruction": "Say this in a <emotion> tone",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/en-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "😄 happy",
+                "url": "../assets/official_outputs/en-1-happy.wav"
+              },
+              {
+                "label": "😭 sad",
+                "url": "../assets/official_outputs/en-1-sad.wav"
+              },
+              {
+                "label": "😡 angry",
+                "url": "../assets/official_outputs/en-1-angry.wav"
+              },
+              {
+                "label": "😱 afraid",
+                "url": "../assets/official_outputs/en-1-afraid.wav"
+              },
+              {
+                "label": "😐 calm",
+                "url": "../assets/official_outputs/en-1-input.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-en-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 7.883,
+              "rtf": 0.985,
+              "rms": 0.0797
+            }
+          },
+          {
+            "id": "emo-en-2",
+            "label": "Emotion Edit · English",
+            "instruction": "Say this in a <emotion> tone",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/en-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "😄 happy",
+                "url": "../assets/official_outputs/en-2-happy.wav"
+              },
+              {
+                "label": "😭 sad",
+                "url": "../assets/official_outputs/en-2-sad.wav"
+              },
+              {
+                "label": "😡 angry",
+                "url": "../assets/official_outputs/en-2-angry.wav"
+              },
+              {
+                "label": "😱 afraid",
+                "url": "../assets/official_outputs/en-2-afraid.wav"
+              },
+              {
+                "label": "😐 calm",
+                "url": "../assets/official_outputs/en-2-input.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-en-2.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 7.363,
+              "rtf": 0.92,
+              "rms": 0.0792
+            }
+          }
+        ]
+      },
+      {
+        "id": "voice-edit",
+        "title": "Timbre Edit",
+        "subtitle": "Replace the speaker timbre · keep the words",
+        "samples": [
+          {
+            "id": "vc-1",
+            "label": "Voice Edit · Mandarin",
+            "instruction": "Keep the words and change the timbre to: “这位说话人的声音低沉而浑厚，语速平稳，吐字清晰。他的说话风格沉稳而富有思考，带有平静的反思特质。”",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vc-1-input.wav",
+            "official_audio": "../assets/official_outputs/vc-1-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/voice-edit_vc-1.wav",
+            "metrics": {
+              "duration": 6.62,
+              "latency": 4.003,
+              "rtf": 0.605,
+              "rms": 0.0815
+            }
+          },
+          {
+            "id": "vc-2",
+            "label": "Voice Edit · Mandarin",
+            "instruction": "Keep the words and change the timbre to: “这位说话人是一位女声，音色清晰明亮，语速平稳，吐字非常清晰。她的说话风格正式且客观，具有新闻播报或正式文件朗读的风格。”",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vc-2-input.wav",
+            "official_audio": "../assets/official_outputs/vc-2-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/voice-edit_vc-2.wav",
+            "metrics": {
+              "duration": 6.86,
+              "latency": 4.493,
+              "rtf": 0.655,
+              "rms": 0.1224
+            }
+          },
+          {
+            "id": "vc-3",
+            "label": "Voice Edit · Mandarin",
+            "instruction": "Keep the words and change the timbre to: “The speaker is a female with a calm, conversational tone, discussing financial comparisons between different decades. Her speaking style is deliberate and matter-of-fact, using a standard Chinese accent with clear pronunciation.”",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vc-3-input.wav",
+            "official_audio": "../assets/official_outputs/vc-3-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/voice-edit_vc-3.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 5.63,
+              "rtf": 0.704,
+              "rms": 0.1061
+            }
+          },
+          {
+            "id": "vc-4",
+            "label": "Voice Edit · English",
+            "instruction": "Keep the words and change the timbre to: “The speaker has a clean, limpid voice with a noticeable British accent. Slow-paced, sincere and frank in tone, in the style of someone calmly recounting personal experience. The timbre is warm and soothing, articulation crisp and clean, intonation calm and unhurried, creating the atmosphere of a story quietly told.”",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/vc-4-input.wav",
+            "official_audio": "../assets/official_outputs/vc-4-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/voice-edit_vc-4.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 10.226,
+              "rtf": 1.278,
+              "rms": 0.0835
+            }
+          }
+        ]
+      },
+      {
+        "id": "nonverbal-edit",
+        "title": "Nonverbal Edit",
+        "subtitle": "Insert or remove a non-verbal event",
+        "samples": [
+          {
+            "id": "zh-a",
+            "label": "Nonverbal Edit · Mandarin · Insert",
+            "instruction": "",
+            "transcript": "这个月的转化率是 2.3%，比预期低了0.5个百分点。主要的缺口来自新客渠道，下周我先做一轮复盘，再决定要不要追加预算。",
+            "input_audio": "../assets/demo_assets/zh-a-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/zh-a-input.wav"
+              },
+              {
+                "label": "😮‍💨 sigh",
+                "url": "../assets/official_outputs/zh-a-sigh.wav"
+              },
+              {
+                "label": "😐 filler",
+                "url": "../assets/official_outputs/zh-a-filler.wav"
+              },
+              {
+                "label": "🤧 cough",
+                "url": "../assets/official_outputs/zh-a-cough.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/nonverbal-edit_zh-a.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 10.207,
+              "rtf": 1.276,
+              "rms": 0.0687
+            }
+          },
+          {
+            "id": "zh-b",
+            "label": "Nonverbal Edit · Mandarin · Remove",
+            "instruction": "",
+            "transcript": "我跟你讲👃，他昨天真的去了，我以为他就随口一说😂，结果人家连行李都打包好了，哇🤩，这也太说到做到了吧。",
+            "input_audio": "../assets/demo_assets/zh-b-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/zh-b-input.wav"
+              },
+              {
+                "label": "😂 laugh",
+                "url": "../assets/official_outputs/zh-b-laugh.wav"
+              },
+              {
+                "label": "🤩 surprise",
+                "url": "../assets/official_outputs/zh-b-surprise.wav"
+              },
+              {
+                "label": "👃 inhale",
+                "url": "../assets/official_outputs/zh-b-inhale.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/nonverbal-edit_zh-b.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 13.739,
+              "rtf": 1.717,
+              "rms": 0.0567
+            }
+          },
+          {
+            "id": "en-c",
+            "label": "Nonverbal Edit · English · Insert",
+            "instruction": "",
+            "transcript": "The result came back this morning. We tested three versions, and only one of them held up under load. I'll show you which one in a second.",
+            "input_audio": "../assets/demo_assets/en-c-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/en-c-input.wav"
+              },
+              {
+                "label": "🌬️ breath",
+                "url": "../assets/official_outputs/en-c-breath.wav"
+              },
+              {
+                "label": "🤧 sneeze",
+                "url": "../assets/official_outputs/en-c-sneeze.wav"
+              },
+              {
+                "label": "⏸️ pause",
+                "url": "../assets/official_outputs/en-c-pause.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/nonverbal-edit_en-c.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 14.015,
+              "rtf": 1.752,
+              "rms": 0.0704
+            }
+          },
+          {
+            "id": "en-d",
+            "label": "Nonverbal Edit · English · Remove",
+            "instruction": "",
+            "transcript": "Sorry, I know it's really late right now. I walked past that shop tonight and they were playing our song. Hmm🎵~ I found out today the project was cancelled🐍...Nobody even told me. I gave it a year😢. Anyway, call me back when you wake up tomorrow.",
+            "input_audio": "../assets/demo_assets/en-d-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/official_outputs/en-d-input.wav"
+              },
+              {
+                "label": "🎵 hmm",
+                "url": "../assets/official_outputs/en-d-hmm.wav"
+              },
+              {
+                "label": "🐍 hiss",
+                "url": "../assets/official_outputs/en-d-hiss.wav"
+              },
+              {
+                "label": "😢 cry",
+                "url": "../assets/official_outputs/en-d-cry.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/nonverbal-edit_en-d.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 18.827,
+              "rtf": 2.353,
+              "rms": 0.0686
+            }
+          }
+        ]
+      },
+      {
+        "id": "whisper-edit",
+        "title": "Whisper Edit",
+        "subtitle": "Transform between normal speech and whispered speech",
+        "samples": [
+          {
+            "id": "wh-w2n-zh",
+            "label": "Normal → Whisper · Mandarin",
+            "instruction": "Turn this into a whisper",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/wh-w2n-zh-input.wav",
+            "official_audio": "../assets/official_outputs/wh-w2n-zh-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/whisper-edit_wh-w2n-zh.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 7.462,
+              "rtf": 0.933,
+              "rms": 0.0633
+            }
+          },
+          {
+            "id": "wh-w2n-en",
+            "label": "Normal → Whisper · English",
+            "instruction": "Turn this into a whisper",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/wh-w2n-en-input.wav",
+            "official_audio": "../assets/official_outputs/wh-w2n-en-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/whisper-edit_wh-w2n-en.wav",
+            "metrics": {
+              "duration": 5.5,
+              "latency": 4.822,
+              "rtf": 0.877,
+              "rms": 0.0388
+            }
+          },
+          {
+            "id": "wh-n2w-zh",
+            "label": "Whisper → Normal · Mandarin",
+            "instruction": "Turn this whisper into normal speech",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/wh-n2w-zh-input.wav",
+            "official_audio": "../assets/official_outputs/wh-n2w-zh-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/whisper-edit_wh-n2w-zh.wav",
+            "metrics": {
+              "duration": 4.5,
+              "latency": 4.942,
+              "rtf": 1.098,
+              "rms": 0.0106
+            }
+          },
+          {
+            "id": "wh-n2w-en",
+            "label": "Whisper → Normal · English",
+            "instruction": "Turn this whisper into normal speech",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/wh-n2w-en-input.wav",
+            "official_audio": "../assets/official_outputs/wh-n2w-en-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/whisper-edit_wh-n2w-en.wav",
+            "metrics": {
+              "duration": 5.34,
+              "latency": 5.396,
+              "rtf": 1.011,
+              "rms": 0.0237
+            }
+          }
+        ]
+      },
+      {
+        "id": "accent-edit",
+        "title": "Deaccent",
+        "subtitle": "Convert an accented recording to standard Mandarin",
+        "samples": [
+          {
+            "id": "accent-tibetan",
+            "label": "Tibetan accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-tibetan-input.wav",
+            "official_audio": "../assets/official_outputs/accent-tibetan-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-tibetan.wav",
+            "metrics": {
+              "duration": 3.9,
+              "latency": 4.653,
+              "rtf": 1.193,
+              "rms": 0.065
+            }
+          },
+          {
+            "id": "accent-sichuan",
+            "label": "Sichuan accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-sichuan-input.wav",
+            "official_audio": "../assets/official_outputs/accent-sichuan-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-sichuan.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 7.348,
+              "rtf": 0.918,
+              "rms": 0.0933
+            }
+          },
+          {
+            "id": "accent-dongbei",
+            "label": "Northeastern accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-dongbei-input.wav",
+            "official_audio": "../assets/official_outputs/accent-dongbei-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-dongbei.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 11.784,
+              "rtf": 1.473,
+              "rms": 0.0643
+            }
+          },
+          {
+            "id": "accent-hubei",
+            "label": "Hubei accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-hubei-input.wav",
+            "official_audio": "../assets/official_outputs/accent-hubei-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-hubei.wav",
+            "metrics": {
+              "duration": 2.5,
+              "latency": 4.099,
+              "rtf": 1.64,
+              "rms": 0.0636
+            }
+          },
+          {
+            "id": "accent-hunan",
+            "label": "Hunan accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-hunan-input.wav",
+            "official_audio": "../assets/official_outputs/accent-hunan-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-hunan.wav",
+            "metrics": {
+              "duration": 4.58,
+              "latency": 5.599,
+              "rtf": 1.222,
+              "rms": 0.0639
+            }
+          },
+          {
+            "id": "accent-fujian",
+            "label": "Fujian accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-fujian-input.wav",
+            "official_audio": "../assets/official_outputs/accent-fujian-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-fujian.wav",
+            "metrics": {
+              "duration": 5.08,
+              "latency": 4.549,
+              "rtf": 0.895,
+              "rms": 0.0685
+            }
+          },
+          {
+            "id": "accent-india",
+            "label": "Indian accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-india-input.wav",
+            "official_audio": "../assets/official_outputs/accent-india-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-india.wav",
+            "metrics": {
+              "duration": 3.34,
+              "latency": 4.101,
+              "rtf": 1.228,
+              "rms": 0.0698
+            }
+          },
+          {
+            "id": "accent-japan",
+            "label": "Japanese accent → Standard Mandarin",
+            "instruction": "Deaccent this recording into standard Mandarin",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/accent-japan-input.wav",
+            "official_audio": "../assets/official_outputs/accent-japan-output.wav",
+            "official_multi": [],
+            "mlx_audio": "../outputs/all_62_samples/accent-edit_accent-japan.wav",
+            "metrics": {
+              "duration": 5.54,
+              "latency": 5.682,
+              "rtf": 1.026,
+              "rms": 0.0638
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "acoustic-editing",
+    "name": "Acoustic Editing",
+    "groups": [
+      {
+        "id": "speed-edit",
+        "title": "Speed Edit",
+        "subtitle": "Slide through every supported rate multiplier",
+        "samples": [
+          {
+            "id": "speed-1",
+            "label": "Speed Edit",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/speed-edit-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "0.5×",
+                "url": "../assets/official_outputs/speed-edit-1-0.5.wav"
+              },
+              {
+                "label": "0.75×",
+                "url": "../assets/official_outputs/speed-edit-1-0.75.wav"
+              },
+              {
+                "label": "1.0× (source)",
+                "url": "../assets/official_outputs/speed-edit-1-input.wav"
+              },
+              {
+                "label": "1.25×",
+                "url": "../assets/official_outputs/speed-edit-1-1.25.wav"
+              },
+              {
+                "label": "1.5×",
+                "url": "../assets/official_outputs/speed-edit-1-1.5.wav"
+              },
+              {
+                "label": "2.0×",
+                "url": "../assets/official_outputs/speed-edit-1-2.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/speed-edit_speed-1.wav",
+            "metrics": {
+              "duration": 8.0,
+              "latency": 7.646,
+              "rtf": 0.956,
+              "rms": 0.056
+            }
+          },
+          {
+            "id": "speed-2",
+            "label": "Speed Edit",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/speed-edit-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "0.5×",
+                "url": "../assets/official_outputs/speed-edit-0.5.wav"
+              },
+              {
+                "label": "0.75×",
+                "url": "../assets/official_outputs/speed-edit-0.75.wav"
+              },
+              {
+                "label": "1.0× (source)",
+                "url": "../assets/official_outputs/speed-edit-input.wav"
+              },
+              {
+                "label": "1.25×",
+                "url": "../assets/official_outputs/speed-edit-1.25.wav"
+              },
+              {
+                "label": "1.5×",
+                "url": "../assets/official_outputs/speed-edit-1.5.wav"
+              },
+              {
+                "label": "2.0×",
+                "url": "../assets/official_outputs/speed-edit-2.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/speed-edit_speed-2.wav",
+            "metrics": {
+              "duration": 3.3,
+              "latency": 3.778,
+              "rtf": 1.145,
+              "rms": 0.081
+            }
+          }
+        ]
+      },
+      {
+        "id": "volume-edit",
+        "title": "Energy Edit",
+        "subtitle": "Slide through every supported loudness offset",
+        "samples": [
+          {
+            "id": "volume-1",
+            "label": "Energy Edit",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/energy-edit-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "−15 dB",
+                "url": "../assets/official_outputs/energy-edit-1--15.wav"
+              },
+              {
+                "label": "−10 dB",
+                "url": "../assets/official_outputs/energy-edit-1--10.wav"
+              },
+              {
+                "label": "−5 dB",
+                "url": "../assets/official_outputs/energy-edit-1--5.wav"
+              },
+              {
+                "label": "0 dB (source)",
+                "url": "../assets/official_outputs/energy-edit-1-input.wav"
+              },
+              {
+                "label": "+5 dB",
+                "url": "../assets/official_outputs/energy-edit-1-+5.wav"
+              },
+              {
+                "label": "+10 dB",
+                "url": "../assets/official_outputs/energy-edit-1-+10.wav"
+              },
+              {
+                "label": "+15 dB",
+                "url": "../assets/official_outputs/energy-edit-1-+15.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/volume-edit_volume-1.wav",
+            "metrics": {
+              "duration": 5.5,
+              "latency": 4.496,
+              "rtf": 0.818,
+              "rms": 0.0492
+            }
+          },
+          {
+            "id": "volume-2",
+            "label": "Energy Edit",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/energy-edit-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "−15 dB",
+                "url": "../assets/official_outputs/energy-edit-2--15.wav"
+              },
+              {
+                "label": "−10 dB",
+                "url": "../assets/official_outputs/energy-edit-2--10.wav"
+              },
+              {
+                "label": "−5 dB",
+                "url": "../assets/official_outputs/energy-edit-2--5.wav"
+              },
+              {
+                "label": "0 dB (source)",
+                "url": "../assets/official_outputs/energy-edit-2-input.wav"
+              },
+              {
+                "label": "+5 dB",
+                "url": "../assets/official_outputs/energy-edit-2-+5.wav"
+              },
+              {
+                "label": "+10 dB",
+                "url": "../assets/official_outputs/energy-edit-2-+10.wav"
+              },
+              {
+                "label": "+15 dB",
+                "url": "../assets/official_outputs/energy-edit-2-+15.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/volume-edit_volume-2.wav",
+            "metrics": {
+              "duration": 2.5,
+              "latency": 2.685,
+              "rtf": 1.074,
+              "rms": 0.043
+            }
+          }
+        ]
+      },
+      {
+        "id": "pitch-edit",
+        "title": "Pitch Edit",
+        "subtitle": "Slide through every supported pitch shift",
+        "samples": [
+          {
+            "id": "pitch-1",
+            "label": "Pitch Edit",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/pitch-1-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "−3 semi",
+                "url": "../assets/official_outputs/pitch-1--3.wav"
+              },
+              {
+                "label": "−2 semi",
+                "url": "../assets/official_outputs/pitch-1--2.wav"
+              },
+              {
+                "label": "−1 semi",
+                "url": "../assets/official_outputs/pitch-1--1.wav"
+              },
+              {
+                "label": "0 (source)",
+                "url": "../assets/official_outputs/pitch-1-input.wav"
+              },
+              {
+                "label": "+1 semi",
+                "url": "../assets/official_outputs/pitch-1-+1.wav"
+              },
+              {
+                "label": "+2 semi",
+                "url": "../assets/official_outputs/pitch-1-+2.wav"
+              },
+              {
+                "label": "+3 semi",
+                "url": "../assets/official_outputs/pitch-1-+3.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/pitch-edit_pitch-1.wav",
+            "metrics": {
+              "duration": 5.5,
+              "latency": 3.747,
+              "rtf": 0.681,
+              "rms": 0.059
+            }
+          },
+          {
+            "id": "pitch-2",
+            "label": "Pitch Edit",
+            "instruction": "",
+            "transcript": "",
+            "input_audio": "../assets/demo_assets/pitch-2-input.wav",
+            "official_audio": null,
+            "official_multi": [
+              {
+                "label": "−3 semi",
+                "url": "../assets/official_outputs/pitch-2--3.wav"
+              },
+              {
+                "label": "−2 semi",
+                "url": "../assets/official_outputs/pitch-2--2.wav"
+              },
+              {
+                "label": "−1 semi",
+                "url": "../assets/official_outputs/pitch-2--1.wav"
+              },
+              {
+                "label": "0 (source)",
+                "url": "../assets/official_outputs/pitch-2-input.wav"
+              },
+              {
+                "label": "+1 semi",
+                "url": "../assets/official_outputs/pitch-2-+1.wav"
+              },
+              {
+                "label": "+2 semi",
+                "url": "../assets/official_outputs/pitch-2-+2.wav"
+              },
+              {
+                "label": "+3 semi",
+                "url": "../assets/official_outputs/pitch-2-+3.wav"
+              }
+            ],
+            "mlx_audio": "../outputs/all_62_samples/pitch-edit_pitch-2.wav",
+            "metrics": {
+              "duration": 5.88,
+              "latency": 5.251,
+              "rtf": 0.893,
+              "rms": 0.0871
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
