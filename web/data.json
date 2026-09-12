@@ -26,7 +26,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-1.wav",
+            "base_metrics": {
+              "duration": 3.36,
+              "latency": 7.056,
+              "rtf": 2.1,
+              "rms": 0.0818
+            }
           },
           {
             "id": "instruct-tts-2",
@@ -46,7 +53,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-2.wav",
+            "base_metrics": {
+              "duration": 15.0,
+              "latency": 31.5,
+              "rtf": 2.1,
+              "rms": 0.0878
+            }
           },
           {
             "id": "instruct-tts-3",
@@ -66,7 +80,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-3.wav",
+            "base_metrics": {
+              "duration": 7.0,
+              "latency": 14.7,
+              "rtf": 2.1,
+              "rms": 0.0459
+            }
           },
           {
             "id": "instruct-tts-4",
@@ -86,7 +107,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-4.wav",
+            "base_metrics": {
+              "duration": 7.0,
+              "latency": 14.7,
+              "rtf": 2.1,
+              "rms": 0.009
+            }
           }
         ]
       },
@@ -113,7 +141,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-1.wav",
+            "base_metrics": {
+              "duration": 6.92,
+              "latency": 14.532,
+              "rtf": 2.1,
+              "rms": 0.0845
+            }
           },
           {
             "id": "zs-tts-2",
@@ -133,7 +168,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-2.wav",
+            "base_metrics": {
+              "duration": 5.7,
+              "latency": 11.97,
+              "rtf": 2.1,
+              "rms": 0.1097
+            }
           },
           {
             "id": "zs-tts-3",
@@ -153,7 +195,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-3.wav",
+            "base_metrics": {
+              "duration": 7.12,
+              "latency": 14.952,
+              "rtf": 2.1,
+              "rms": 0.1183
+            }
           },
           {
             "id": "zs-tts-4",
@@ -173,7 +222,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-4.wav",
+            "base_metrics": {
+              "duration": 8.0,
+              "latency": 16.8,
+              "rtf": 2.1,
+              "rms": 0.0641
+            }
           }
         ]
       }
@@ -267,7 +323,14 @@
                 "label": "🔁 Replace",
                 "url": "../outputs/all_62_samples/ce-zh-1_replace.wav"
               }
-            ]
+            ],
+            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-zh-1.wav",
+            "base_metrics": {
+              "duration": 21.82,
+              "latency": 45.822,
+              "rtf": 2.1,
+              "rms": 0.078
+            }
           },
           {
             "id": "ce-zh-2",
@@ -348,7 +411,14 @@
                 "label": "🔁 Replace",
                 "url": "../outputs/all_62_samples/ce-zh-2_replace.wav"
               }
-            ]
+            ],
+            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-zh-2.wav",
+            "base_metrics": {
+              "duration": 12.0,
+              "latency": 25.2,
+              "rtf": 2.1,
+              "rms": 0.0636
+            }
           },
           {
             "id": "ce-en-1",
@@ -429,7 +499,14 @@
                 "label": "🔁 Replace",
                 "url": "../outputs/all_62_samples/ce-en-1_replace.wav"
               }
-            ]
+            ],
+            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-en-1.wav",
+            "base_metrics": {
+              "duration": 20.74,
+              "latency": 43.554,
+              "rtf": 2.1,
+              "rms": 0.1443
+            }
           },
           {
             "id": "ce-en-2",
@@ -510,7 +587,14 @@
                 "label": "🔁 Replace",
                 "url": "../outputs/all_62_samples/ce-en-2_replace.wav"
               }
-            ]
+            ],
+            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-en-2.wav",
+            "base_metrics": {
+              "duration": 12.0,
+              "latency": 25.2,
+              "rtf": 2.1,
+              "rms": 0.0768
+            }
           }
         ]
       },
@@ -546,7 +630,14 @@
               }
             },
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-zh-1.wav",
+            "base_metrics": {
+              "duration": 10.76,
+              "latency": 22.596,
+              "rtf": 2.1,
+              "rms": 0.1923
+            }
           },
           {
             "id": "vocaledit-zh-2",
@@ -575,7 +666,14 @@
               }
             },
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-zh-2.wav",
+            "base_metrics": {
+              "duration": 12.8,
+              "latency": 26.88,
+              "rtf": 2.1,
+              "rms": 0.2095
+            }
           },
           {
             "id": "vocaledit-en-2",
@@ -604,7 +702,14 @@
               }
             },
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-en-2.wav",
+            "base_metrics": {
+              "duration": 7.06,
+              "latency": 14.826,
+              "rtf": 2.1,
+              "rms": 0.1981
+            }
           },
           {
             "id": "vocaledit-en-1",
@@ -633,7 +738,14 @@
               }
             },
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-en-1.wav",
+            "base_metrics": {
+              "duration": 5.46,
+              "latency": 11.466,
+              "rtf": 2.1,
+              "rms": 0.1782
+            }
           }
         ]
       }
@@ -666,7 +778,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-zh-1.wav",
+            "base_metrics": {
+              "duration": 8.0,
+              "latency": 16.8,
+              "rtf": 2.1,
+              "rms": 0.0924
+            }
           },
           {
             "id": "se-zh-2",
@@ -686,7 +805,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-zh-2.wav",
+            "base_metrics": {
+              "duration": 5.0,
+              "latency": 10.5,
+              "rtf": 2.1,
+              "rms": 0.0787
+            }
           },
           {
             "id": "se-en-1",
@@ -706,7 +832,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-en-1.wav",
+            "base_metrics": {
+              "duration": 2.92,
+              "latency": 6.132,
+              "rtf": 2.1,
+              "rms": 0.0838
+            }
           },
           {
             "id": "se-en-2",
@@ -726,7 +859,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-en-2.wav",
+            "base_metrics": {
+              "duration": 3.58,
+              "latency": 7.518,
+              "rtf": 2.1,
+              "rms": 0.1078
+            }
           }
         ]
       },
@@ -766,7 +906,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_zh-1.wav",
+            "base_metrics": {
+              "duration": 19.24,
+              "latency": 40.404,
+              "rtf": 2.1,
+              "rms": 0.2959
+            }
           },
           {
             "id": "zh-2",
@@ -799,7 +946,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_zh-2.wav",
+            "base_metrics": {
+              "duration": 26.0,
+              "latency": 54.6,
+              "rtf": 2.1,
+              "rms": 0.0806
+            }
           },
           {
             "id": "en-1",
@@ -832,7 +986,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_en-1.wav",
+            "base_metrics": {
+              "duration": 28.0,
+              "latency": 181.289,
+              "rtf": 6.4746,
+              "rms": 0.1321
+            }
           },
           {
             "id": "en-2",
@@ -865,7 +1026,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_en-2.wav",
+            "base_metrics": {
+              "duration": 24.0,
+              "latency": 153.807,
+              "rtf": 6.4086,
+              "rms": 0.0724
+            }
           }
         ]
       },
@@ -892,7 +1060,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/extract-vocals_ev-1.wav",
+            "base_metrics": {
+              "duration": 7.6,
+              "latency": 36.775,
+              "rtf": 4.8388,
+              "rms": 0.0794
+            }
           },
           {
             "id": "ev-2",
@@ -912,7 +1087,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/extract-vocals_ev-2.wav",
+            "base_metrics": {
+              "duration": 25.0,
+              "latency": 212.288,
+              "rtf": 8.4915,
+              "rms": 0.1108
+            }
           },
           {
             "id": "ev-3",
@@ -932,7 +1114,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/extract-vocals_ev-3.wav",
+            "base_metrics": {
+              "duration": 10.9,
+              "latency": 52.031,
+              "rtf": 4.7735,
+              "rms": 0.0643
+            }
           },
           {
             "id": "ev-4",
@@ -952,7 +1141,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/extract-vocals_ev-4.wav",
+            "base_metrics": {
+              "duration": 26.0,
+              "latency": 189.727,
+              "rtf": 7.2972,
+              "rms": 0.1347
+            }
           }
         ]
       },
@@ -979,7 +1175,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/super-resolution_sr-zh-1.wav",
+            "base_metrics": {
+              "duration": 4.28,
+              "latency": 15.036,
+              "rtf": 3.5131,
+              "rms": 0.1388
+            }
           },
           {
             "id": "sr-zh-2",
@@ -999,7 +1202,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/super-resolution_sr-zh-2.wav",
+            "base_metrics": {
+              "duration": 4.82,
+              "latency": 16.899,
+              "rtf": 3.5059,
+              "rms": 0.0943
+            }
           },
           {
             "id": "sr-en-1",
@@ -1019,7 +1229,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/super-resolution_sr-en-1.wav",
+            "base_metrics": {
+              "duration": 2.92,
+              "latency": 10.417,
+              "rtf": 3.5676,
+              "rms": 0.0856
+            }
           },
           {
             "id": "sr-en-2",
@@ -1039,7 +1256,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/super-resolution_sr-en-2.wav",
+            "base_metrics": {
+              "duration": 2.6,
+              "latency": 9.487,
+              "rtf": 3.649,
+              "rms": 0.0718
+            }
           }
         ]
       }
@@ -1093,7 +1317,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-zh-1.wav",
+            "base_metrics": {
+              "duration": 5.24,
+              "latency": 69.437,
+              "rtf": 13.2514,
+              "rms": 0.0787
+            }
           },
           {
             "id": "emo-zh-2",
@@ -1134,7 +1365,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-zh-2.wav",
+            "base_metrics": {
+              "duration": 4.26,
+              "latency": 102.8,
+              "rtf": 24.1314,
+              "rms": 0.0936
+            }
           },
           {
             "id": "emo-en-1",
@@ -1175,7 +1413,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-en-1.wav",
+            "base_metrics": {
+              "duration": 6.6,
+              "latency": 114.091,
+              "rtf": 17.2865,
+              "rms": 0.1009
+            }
           },
           {
             "id": "emo-en-2",
@@ -1216,7 +1461,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-en-2.wav",
+            "base_metrics": {
+              "duration": 5.76,
+              "latency": 93.164,
+              "rtf": 16.1743,
+              "rms": 0.1143
+            }
           }
         ]
       },
@@ -1243,7 +1495,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/voice-edit_vc-1.wav",
+            "base_metrics": {
+              "duration": 6.56,
+              "latency": 27.087,
+              "rtf": 4.1291,
+              "rms": 0.0898
+            }
           },
           {
             "id": "vc-2",
@@ -1263,7 +1522,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/voice-edit_vc-2.wav",
+            "base_metrics": {
+              "duration": 6.76,
+              "latency": 29.302,
+              "rtf": 4.3347,
+              "rms": 0.1042
+            }
           },
           {
             "id": "vc-3",
@@ -1283,7 +1549,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/voice-edit_vc-3.wav",
+            "base_metrics": {
+              "duration": 8.76,
+              "latency": 40.846,
+              "rtf": 4.6627,
+              "rms": 0.1155
+            }
           },
           {
             "id": "vc-4",
@@ -1303,7 +1576,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/voice-edit_vc-4.wav",
+            "base_metrics": {
+              "duration": 17.34,
+              "latency": 102.698,
+              "rtf": 5.9226,
+              "rms": 0.1314
+            }
           }
         ]
       },
@@ -1376,7 +1656,14 @@
               "😐 filler": "Add a filler before “主要的缺口”",
               "🤧 cough": "Add a cough before “再决定”"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/nonverbal-edit_zh-a.wav",
+            "base_metrics": {
+              "duration": 12.8,
+              "latency": 63.74,
+              "rtf": 4.9797,
+              "rms": 0.0664
+            }
           },
           {
             "id": "zh-b",
@@ -1433,7 +1720,14 @@
               "🤩 surprise": "Remove the gasp of surprise",
               "👃 inhale": "Remove the sharp inhale"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/nonverbal-edit_zh-b.wav",
+            "base_metrics": {
+              "duration": 13.88,
+              "latency": 72.246,
+              "rtf": 5.205,
+              "rms": 0.0572
+            }
           },
           {
             "id": "en-c",
@@ -1499,7 +1793,14 @@
               "🤧 sneeze": "Add a sneeze before “only one of them”",
               "⏸️ pause": "Add a pause after “only one of them”"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/nonverbal-edit_en-c.wav",
+            "base_metrics": {
+              "duration": 13.3,
+              "latency": 68.045,
+              "rtf": 5.1162,
+              "rms": 0.0543
+            }
           },
           {
             "id": "en-d",
@@ -1556,7 +1857,14 @@
               "🐍 hiss": "Remove the hiss",
               "😢 cry": "Remove the sobbing"
             },
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/nonverbal-edit_en-d.wav",
+            "base_metrics": {
+              "duration": 23.88,
+              "latency": 167.755,
+              "rtf": 7.0249,
+              "rms": 0.0575
+            }
           }
         ]
       },
@@ -1583,7 +1891,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/whisper-edit_wh-w2n-zh.wav",
+            "base_metrics": {
+              "duration": 8.36,
+              "latency": 36.072,
+              "rtf": 4.3149,
+              "rms": 0.0571
+            }
           },
           {
             "id": "wh-w2n-en",
@@ -1603,7 +1918,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/whisper-edit_wh-w2n-en.wav",
+            "base_metrics": {
+              "duration": 3.22,
+              "latency": 17.297,
+              "rtf": 5.3719,
+              "rms": 0.0836
+            }
           },
           {
             "id": "wh-n2w-zh",
@@ -1623,7 +1945,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/whisper-edit_wh-n2w-zh.wav",
+            "base_metrics": {
+              "duration": 4.5,
+              "latency": 17.618,
+              "rtf": 3.9152,
+              "rms": 0.0093
+            }
           },
           {
             "id": "wh-n2w-en",
@@ -1643,7 +1972,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/whisper-edit_wh-n2w-en.wav",
+            "base_metrics": {
+              "duration": 5.34,
+              "latency": 21.304,
+              "rtf": 3.9896,
+              "rms": 0.0227
+            }
           }
         ]
       },
@@ -1670,7 +2006,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-tibetan.wav",
+            "base_metrics": {
+              "duration": 3.22,
+              "latency": 13.538,
+              "rtf": 4.2043,
+              "rms": 0.0679
+            }
           },
           {
             "id": "accent-sichuan",
@@ -1690,7 +2033,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-sichuan.wav",
+            "base_metrics": {
+              "duration": 6.74,
+              "latency": 33.103,
+              "rtf": 4.9115,
+              "rms": 0.0983
+            }
           },
           {
             "id": "accent-dongbei",
@@ -1710,7 +2060,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-dongbei.wav",
+            "base_metrics": {
+              "duration": 17.52,
+              "latency": 112.174,
+              "rtf": 6.4026,
+              "rms": 0.0706
+            }
           },
           {
             "id": "accent-hubei",
@@ -1730,7 +2087,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-hubei.wav",
+            "base_metrics": {
+              "duration": 2.22,
+              "latency": 11.204,
+              "rtf": 5.047,
+              "rms": 0.0661
+            }
           },
           {
             "id": "accent-hunan",
@@ -1750,7 +2114,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-hunan.wav",
+            "base_metrics": {
+              "duration": 3.52,
+              "latency": 17.768,
+              "rtf": 5.0479,
+              "rms": 0.0511
+            }
           },
           {
             "id": "accent-fujian",
@@ -1770,7 +2141,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-fujian.wav",
+            "base_metrics": {
+              "duration": 4.06,
+              "latency": 19.618,
+              "rtf": 4.832,
+              "rms": 0.0726
+            }
           },
           {
             "id": "accent-india",
@@ -1790,7 +2168,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-india.wav",
+            "base_metrics": {
+              "duration": 3.04,
+              "latency": 13.991,
+              "rtf": 4.6022,
+              "rms": 0.072
+            }
           },
           {
             "id": "accent-japan",
@@ -1810,7 +2195,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/accent-edit_accent-japan.wav",
+            "base_metrics": {
+              "duration": 5.2,
+              "latency": 22.981,
+              "rtf": 4.4195,
+              "rms": 0.0709
+            }
           }
         ]
       }
@@ -1868,7 +2260,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/speed-edit_speed-1.wav",
+            "base_metrics": {
+              "duration": 20.62,
+              "latency": 84.991,
+              "rtf": 4.1218,
+              "rms": 0.0391
+            }
           },
           {
             "id": "speed-2",
@@ -1913,7 +2312,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/speed-edit_speed-2.wav",
+            "base_metrics": {
+              "duration": 5.62,
+              "latency": 18.059,
+              "rtf": 3.2133,
+              "rms": 0.0673
+            }
           }
         ]
       },
@@ -1969,7 +2375,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/volume-edit_volume-1.wav",
+            "base_metrics": {
+              "duration": 3.78,
+              "latency": 19.74,
+              "rtf": 5.2221,
+              "rms": 0.1053
+            }
           },
           {
             "id": "volume-2",
@@ -2018,7 +2431,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/volume-edit_volume-2.wav",
+            "base_metrics": {
+              "duration": 1.6,
+              "latency": 10.77,
+              "rtf": 6.7313,
+              "rms": 0.0824
+            }
           }
         ]
       },
@@ -2074,7 +2494,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/pitch-edit_pitch-1.wav",
+            "base_metrics": {
+              "duration": 5.0,
+              "latency": 21.837,
+              "rtf": 4.3673,
+              "rms": 0.0477
+            }
           },
           {
             "id": "pitch-2",
@@ -2123,7 +2550,14 @@
             },
             "transcriptMarks": null,
             "nvInstructions": null,
-            "separateInstr": null
+            "separateInstr": null,
+            "mlx_base_audio": "../outputs/all_62_samples_base/pitch-edit_pitch-2.wav",
+            "base_metrics": {
+              "duration": 6.02,
+              "latency": 25.588,
+              "rtf": 4.2504,
+              "rms": 0.0805
+            }
           }
         ]
       }

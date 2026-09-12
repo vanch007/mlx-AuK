@@ -33,3 +33,5 @@ ckpts/
 !outputs/
 !outputs/all_62_samples/
 !outputs/all_62_samples/**
+!outputs/all_62_samples_base/
+!outputs/all_62_samples_base/**

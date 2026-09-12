@@ -80,12 +80,16 @@ class AukInfer:
 
         # 3. Resolve Config path
         if config_path is None:
-            local_cfg = os.path.join(mlx_dir, "config.json")
-            if os.path.exists(local_cfg):
-                self.config_path = local_cfg
+            local_yaml = os.path.join(mlx_dir, "config.yaml")
+            if os.path.exists(local_yaml):
+                self.config_path = local_yaml
             else:
-                legacy_cfg = "ckpts/AuK/config.yaml" if self.variant == "base" else "ckpts/AuK-Flash/config.yaml"
-                self.config_path = os.path.join(base_dir, legacy_cfg)
+                local_cfg = os.path.join(mlx_dir, "config.json")
+                if os.path.exists(local_cfg):
+                    self.config_path = local_cfg
+                else:
+                    legacy_cfg = "ckpts/AuK/config.yaml" if self.variant == "base" else "ckpts/AuK-Flash/config.yaml"
+                    self.config_path = os.path.join(base_dir, legacy_cfg)
         else:
             self.config_path = config_path
 
