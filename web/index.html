@@ -991,6 +991,59 @@
           '</div>';
         }
 
+        if (grp.id === "separate-speech") {
+          let cInstr = (sample.nvInstructions && sample.nvInstructions["Output1 · content"]) || sample.instruction;
+          let nInstr = sample.nvInstructions && sample.nvInstructions["Output2 · number"];
+          promptRowsHtml = '<div class="prompt-row">' +
+            '<span class="prompt-label">【双人说话人分离指令 (双音路独立分离)】</span>' +
+            '<div class="prompt-content" style="color:#58a6ff; font-weight:500; display:flex; flex-direction:column; gap:4px;">' +
+              '<div><strong>🎙️ 音路 1 (按内容分离)：</strong>' + escapeHtml(cInstr) + '</div>' +
+              (nInstr ? ('<div><strong>🎙️ 音路 2 (按顺序分离)：</strong>' + escapeHtml(nInstr) + '</div>') : '') +
+            '</div>' +
+          '</div>';
+
+          inputSlotHtml = '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title src">[参考原音频] 原始混合对话</span>' +
+            '</div>' +
+            '<div style="font-size:11px; color:#8b949e; font-weight:600; margin-top:2px; margin-bottom:2px;">🎧 混合双人人声输入</div>' +
+            '<audio controls preload="metadata" src="' + sample.input_audio + '?_t=' + sessionTime + '"></audio>' +
+          '</div>';
+
+          officialSlotHtml = '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title official">[官方原版] (双路分离输出)</span>' +
+            '</div>' +
+            '<div style="font-size:11px; color:#f0883e; font-weight:600; margin-top:2px; margin-bottom:2px;">🎙️ 音路 1 (Output1 · 内容分离)</div>' +
+            '<audio controls preload="metadata" src="../assets/official_outputs/' + sample.id + '-content.wav?_t=' + sessionTime + '"></audio>' +
+            '<div style="font-size:11px; color:#f0883e; font-weight:600; margin-top:8px; margin-bottom:2px;">🎙️ 音路 2 (Output2 · 顺序分离)</div>' +
+            '<audio controls preload="metadata" src="../assets/official_outputs/' + sample.id + '-number.wav?_t=' + sessionTime + '"></audio>' +
+          '</div>';
+
+          flashSlotHtml = '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title mlx-flash">⚡ [本项目] MLX Flash (4步极速 · 双路分离)</span>' +
+              '<span class="slot-meta-badge flash">RTF ' + m.rtf.toFixed(3) + ' · ' + m.latency.toFixed(2) + 's</span>' +
+            '</div>' +
+            '<div style="font-size:11px; color:#7ee787; font-weight:600; margin-top:2px; margin-bottom:2px;">🎙️ 音路 1 (Output1 · 内容分离)</div>' +
+            '<audio controls preload="metadata" src="../outputs/all_62_samples/' + sample.id + '_content.wav?_t=' + sessionTime + '"></audio>' +
+            '<div style="font-size:11px; color:#7ee787; font-weight:600; margin-top:8px; margin-bottom:2px;">🎙️ 音路 2 (Output2 · 顺序分离)</div>' +
+            '<audio controls preload="metadata" src="../outputs/all_62_samples/' + sample.id + '_number.wav?_t=' + sessionTime + '"></audio>' +
+          '</div>';
+
+          let mbText = mb ? ('RTF ' + mb.rtf.toFixed(3) + ' · ' + mb.latency.toFixed(2) + 's') : '高保真 32步';
+          baseSlotHtml = '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title mlx-base">🎯 [本项目] MLX Base (高保真 32步 · 双路分离)</span>' +
+              '<span class="slot-meta-badge base">' + mbText + '</span>' +
+            '</div>' +
+            '<div style="font-size:11px; color:#79c0ff; font-weight:600; margin-top:2px; margin-bottom:2px;">🎙️ 音路 1 (Output1 · 内容分离)</div>' +
+            '<audio controls preload="metadata" src="../outputs/all_62_samples_base/' + sample.id + '_content.wav?_t=' + sessionTime + '"></audio>' +
+            '<div style="font-size:11px; color:#79c0ff; font-weight:600; margin-top:8px; margin-bottom:2px;">🎙️ 音路 2 (Output2 · 顺序分离)</div>' +
+            '<audio controls preload="metadata" src="../outputs/all_62_samples_base/' + sample.id + '_number.wav?_t=' + sessionTime + '"></audio>' +
+          '</div>';
+        }
+
         let slotsHtml = inputSlotHtml + officialSlotHtml;
         if (currentViewMode === "all") {
           slotsHtml += flashSlotHtml + baseSlotHtml;
