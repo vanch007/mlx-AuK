@@ -1,6 +1,7 @@
 # MLX-AuK: Unified Speech Foundation Model & Editing on Apple Silicon
 
 <p align="center">
+  <a href="https://vanch007.github.io/mlx-AuK/"><img src="https://img.shields.io/badge/Live_Demo-GitHub_Pages-5865F2?style=for-the-badge&logo=github" alt="Live Demo"></a>
   <a href="https://github.com/vanch007/mlx-AuK"><img src="https://img.shields.io/badge/GitHub-vanch007%2Fmlx--AuK-black?style=for-the-badge&logo=github" alt="GitHub"></a>
   <a href="https://huggingface.co/vanch007/AuK-Flash-MLX"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-AuK--Flash--MLX-blue?style=for-the-badge" alt="HuggingFace"></a>
   <a href="https://huggingface.co/vanch007/AuK-Flash-MLX-8bit"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-8--Bit_Quantized-green?style=for-the-badge" alt="HuggingFace 8bit"></a>
@@ -113,6 +114,11 @@ python scripts/quantize_mlx.py
 
 ## 🎧 Interactive A/B Comparison Web Board
 
+### 🌐 Live Online Demo (GitHub Pages)
+You can directly experience and test all 62 samples in your browser without cloning or running any commands:
+👉 **[https://vanch007.github.io/mlx-AuK/](https://vanch007.github.io/mlx-AuK/)**
+
+### 💻 Running Locally
 Launch the local web comparison board to listen to all 62 official demo samples side-by-side with MLX outputs:
 
 ```bash

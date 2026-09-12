@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
-*$py.class
+*.class
 *.so
 .Python
 .venv/
@@ -23,9 +23,13 @@ wheels/
 .ruff_cache/
 models/
 ckpts/
-outputs/
-*.wav
-*.mp3
 *.safetensors
 *.bin
 .DS_Store
+
+# Allow benchmark web comparison assets
+!assets/
+!assets/**
+!outputs/
+!outputs/all_62_samples/
+!outputs/all_62_samples/**
