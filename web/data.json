@@ -950,7 +950,7 @@
           {
             "id": "zh-1",
             "label": "Separate Speech · Mandarin",
-            "instruction": "",
+            "instruction": "Keep only the speaker who says “警队规矩”",
             "voice_description": "",
             "spoken_text": "",
             "input_audio": "../assets/demo_assets/zh-1-input.wav",
@@ -974,23 +974,54 @@
               "duration": 19.24,
               "latency": 7.516,
               "rtf": 0.3906444906444907,
-              "rms": 0.0103
+              "rms": 0.0385
             },
             "transcriptMarks": null,
-            "nvInstructions": null,
+            "nvInstructions": {
+              "Output1 · content": "Keep only the speaker who says “警队规矩”",
+              "Output2 · number": "Keep only the second speaker"
+            },
             "separateInstr": null,
             "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_zh-1.wav",
             "base_metrics": {
               "duration": 19.24,
               "latency": 32.741,
               "rtf": 1.7017,
-              "rms": 0.2959
-            }
+              "rms": 0.0502
+            },
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/zh-1-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples/zh-1_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples/zh-1_number.wav"
+              }
+            ],
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/zh-1-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples_base/zh-1_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples_base/zh-1_number.wav"
+              }
+            ]
           },
           {
             "id": "zh-2",
             "label": "Separate Speech · Mandarin",
-            "instruction": "",
+            "instruction": "Keep only the speech of “皇儿”",
             "voice_description": "",
             "spoken_text": "",
             "input_audio": "../assets/demo_assets/zh-2-input.wav",
@@ -1014,23 +1045,54 @@
               "duration": 26.0,
               "latency": 10.179,
               "rtf": 0.3915,
-              "rms": 0.0751
+              "rms": 0.0652
             },
             "transcriptMarks": null,
-            "nvInstructions": null,
+            "nvInstructions": {
+              "Output1 · content": "Keep only the speech of “皇儿”",
+              "Output2 · number": "Keep only the second speaker"
+            },
             "separateInstr": null,
             "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_zh-2.wav",
             "base_metrics": {
               "duration": 26.0,
               "latency": 44.381,
               "rtf": 1.707,
-              "rms": 0.0806
-            }
+              "rms": 0.0728
+            },
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/zh-2-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples/zh-2_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples/zh-2_number.wav"
+              }
+            ],
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/zh-2-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples_base/zh-2_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples_base/zh-2_number.wav"
+              }
+            ]
           },
           {
             "id": "en-1",
             "label": "Separate Speech · English",
-            "instruction": "",
+            "instruction": "Keep only the speaker who says “get what”",
             "voice_description": "",
             "spoken_text": "",
             "input_audio": "../assets/demo_assets/en-1-input.wav",
@@ -1054,23 +1116,54 @@
               "duration": 28.0,
               "latency": 12.516,
               "rtf": 0.447,
-              "rms": 0.021
+              "rms": 0.0303
             },
             "transcriptMarks": null,
-            "nvInstructions": null,
+            "nvInstructions": {
+              "Output1 · content": "Keep only the speaker who says “get what”",
+              "Output2 · number": "Keep only the first speaker"
+            },
             "separateInstr": null,
             "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_en-1.wav",
             "base_metrics": {
               "duration": 28.0,
               "latency": 181.289,
               "rtf": 6.4746,
-              "rms": 0.1321
-            }
+              "rms": 0.078
+            },
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/en-1-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples/en-1_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples/en-1_number.wav"
+              }
+            ],
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/en-1-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples_base/en-1_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples_base/en-1_number.wav"
+              }
+            ]
           },
           {
             "id": "en-2",
             "label": "Separate Speech · English",
-            "instruction": "",
+            "instruction": "Keep only the speaker who says “I'm good and you”",
             "voice_description": "",
             "spoken_text": "",
             "input_audio": "../assets/demo_assets/en-2-input.wav",
@@ -1094,18 +1187,49 @@
               "duration": 24.0,
               "latency": 11.317,
               "rtf": 0.4715416666666667,
-              "rms": 0.0638
+              "rms": 0.0359
             },
             "transcriptMarks": null,
-            "nvInstructions": null,
+            "nvInstructions": {
+              "Output1 · content": "Keep only the speaker who says “I'm good and you”",
+              "Output2 · number": "Keep only the first speaker"
+            },
             "separateInstr": null,
             "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_en-2.wav",
             "base_metrics": {
               "duration": 24.0,
               "latency": 153.807,
               "rtf": 6.4086,
-              "rms": 0.0724
-            }
+              "rms": 0.0404
+            },
+            "mlx_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/en-2-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples/en-2_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples/en-2_number.wav"
+              }
+            ],
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/en-2-input.wav"
+              },
+              {
+                "label": "Output1 · content",
+                "url": "../outputs/all_62_samples_base/en-2_content.wav"
+              },
+              {
+                "label": "Output2 · number",
+                "url": "../outputs/all_62_samples_base/en-2_number.wav"
+              }
+            ]
           }
         ]
       },
