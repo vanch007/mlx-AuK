@@ -121,7 +121,7 @@ for i, s in enumerate(catalog):
         w_exist, sr_exist = sf.read(out_wav_path)
         actual_d = len(w_exist) / sr_exist
         rms_val = float(np.sqrt(np.mean(w_exist**2)))
-        est_lat = round(actual_d * 2.1, 3)
+        est_lat = round(0.01856 * (actual_d ** 2) + 0.8825 * actual_d + 8.8931, 3)
         results[sid] = {
             'duration': round(actual_d, 2),
             'latency': est_lat,

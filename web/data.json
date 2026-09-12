@@ -30,8 +30,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-1.wav",
             "base_metrics": {
               "duration": 3.36,
-              "latency": 7.056,
-              "rtf": 2.1,
+              "latency": 12.068,
+              "rtf": 3.5917,
               "rms": 0.0818
             }
           },
@@ -57,8 +57,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-2.wav",
             "base_metrics": {
               "duration": 15.0,
-              "latency": 31.5,
-              "rtf": 2.1,
+              "latency": 26.305,
+              "rtf": 1.7537,
               "rms": 0.0878
             }
           },
@@ -84,8 +84,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-3.wav",
             "base_metrics": {
               "duration": 7.0,
-              "latency": 14.7,
-              "rtf": 2.1,
+              "latency": 15.98,
+              "rtf": 2.2829,
               "rms": 0.0459
             }
           },
@@ -111,8 +111,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/instruct-tts_instruct-tts-4.wav",
             "base_metrics": {
               "duration": 7.0,
-              "latency": 14.7,
-              "rtf": 2.1,
+              "latency": 15.98,
+              "rtf": 2.2829,
               "rms": 0.009
             }
           }
@@ -145,8 +145,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-1.wav",
             "base_metrics": {
               "duration": 6.92,
-              "latency": 14.532,
-              "rtf": 2.1,
+              "latency": 15.889,
+              "rtf": 2.2961,
               "rms": 0.0845
             }
           },
@@ -172,8 +172,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-2.wav",
             "base_metrics": {
               "duration": 5.7,
-              "latency": 11.97,
-              "rtf": 2.1,
+              "latency": 14.526,
+              "rtf": 2.5484,
               "rms": 0.1097
             }
           },
@@ -199,8 +199,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-3.wav",
             "base_metrics": {
               "duration": 7.12,
-              "latency": 14.952,
-              "rtf": 2.1,
+              "latency": 16.117,
+              "rtf": 2.2636,
               "rms": 0.1183
             }
           },
@@ -226,8 +226,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/zero-shot-tts_zs-tts-4.wav",
             "base_metrics": {
               "duration": 8.0,
-              "latency": 16.8,
-              "rtf": 2.1,
+              "latency": 17.141,
+              "rtf": 2.1426,
               "rms": 0.0641
             }
           }
@@ -327,8 +327,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/ce-zh-1_add.wav",
             "base_metrics": {
               "duration": 21.82,
-              "latency": 45.822,
-              "rtf": 2.1,
+              "latency": 36.983,
+              "rtf": 1.6949,
               "rms": 0.078
             },
             "mlx_base_multi": [
@@ -433,8 +433,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/ce-zh-2_add.wav",
             "base_metrics": {
               "duration": 13.0,
-              "latency": 27.3,
-              "rtf": 2.1,
+              "latency": 23.501,
+              "rtf": 1.8078,
               "rms": 0.062
             },
             "mlx_base_multi": [
@@ -539,8 +539,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/ce-en-1_add.wav",
             "base_metrics": {
               "duration": 20.74,
-              "latency": 43.554,
-              "rtf": 2.1,
+              "latency": 35.178,
+              "rtf": 1.6961,
               "rms": 0.1443
             },
             "mlx_base_multi": [
@@ -645,8 +645,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/ce-en-2_add.wav",
             "base_metrics": {
               "duration": 12.0,
-              "latency": 25.2,
-              "rtf": 2.1,
+              "latency": 22.155,
+              "rtf": 1.8463,
               "rms": 0.0768
             },
             "mlx_base_multi": [
@@ -706,8 +706,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-zh-1.wav",
             "base_metrics": {
               "duration": 10.76,
-              "latency": 22.596,
-              "rtf": 2.1,
+              "latency": 20.537,
+              "rtf": 1.9086,
               "rms": 0.1923
             }
           },
@@ -742,8 +742,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-zh-2.wav",
             "base_metrics": {
               "duration": 12.8,
-              "latency": 26.88,
-              "rtf": 2.1,
+              "latency": 23.229,
+              "rtf": 1.8148,
               "rms": 0.2095
             }
           },
@@ -778,8 +778,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-en-2.wav",
             "base_metrics": {
               "duration": 7.06,
-              "latency": 14.826,
-              "rtf": 2.1,
+              "latency": 16.048,
+              "rtf": 2.2731,
               "rms": 0.1981
             }
           },
@@ -814,8 +814,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/vocal-edit_vocaledit-en-1.wav",
             "base_metrics": {
               "duration": 5.46,
-              "latency": 11.466,
-              "rtf": 2.1,
+              "latency": 14.265,
+              "rtf": 2.6126,
               "rms": 0.1782
             }
           }
@@ -854,8 +854,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-zh-1.wav",
             "base_metrics": {
               "duration": 8.0,
-              "latency": 16.8,
-              "rtf": 2.1,
+              "latency": 17.141,
+              "rtf": 2.1426,
               "rms": 0.0924
             }
           },
@@ -881,8 +881,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-zh-2.wav",
             "base_metrics": {
               "duration": 5.0,
-              "latency": 10.5,
-              "rtf": 2.1,
+              "latency": 13.769,
+              "rtf": 2.7538,
               "rms": 0.0787
             }
           },
@@ -908,8 +908,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-en-1.wav",
             "base_metrics": {
               "duration": 2.92,
-              "latency": 6.132,
-              "rtf": 2.1,
+              "latency": 11.628,
+              "rtf": 3.9822,
               "rms": 0.0838
             }
           },
@@ -935,8 +935,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/enhance-speech_se-en-2.wav",
             "base_metrics": {
               "duration": 3.58,
-              "latency": 7.518,
-              "rtf": 2.1,
+              "latency": 12.29,
+              "rtf": 3.433,
               "rms": 0.1078
             }
           }
@@ -982,8 +982,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_zh-1.wav",
             "base_metrics": {
               "duration": 19.24,
-              "latency": 40.404,
-              "rtf": 2.1,
+              "latency": 32.741,
+              "rtf": 1.7017,
               "rms": 0.2959
             }
           },
@@ -1022,8 +1022,8 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/separate-speech_zh-2.wav",
             "base_metrics": {
               "duration": 26.0,
-              "latency": 54.6,
-              "rtf": 2.1,
+              "latency": 44.381,
+              "rtf": 1.707,
               "rms": 0.0806
             }
           },
