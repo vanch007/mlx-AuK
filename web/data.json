@@ -522,7 +522,7 @@
           {
             "id": "vocaledit-zh-1",
             "label": "Vocal Edit · Mandarin",
-            "instruction": "Replace “寂寞” with “疯狂” in the lyrics",
+            "instruction": "把歌词中的“这是今天最寂寞的时候”改成“这是今天最疯狂的时候”。",
             "voice_description": "",
             "spoken_text": "这是今天最寂寞的时候，太阳照着你好温柔",
             "input_audio": "../assets/demo_assets/vocaledit-zh-1-input.wav",
@@ -533,7 +533,7 @@
               "duration": 10.76,
               "latency": 4.192,
               "rtf": 0.3895910780669145,
-              "rms": 0.1067
+              "rms": 0.0638
             },
             "transcriptMarks": {
               "Output": {
@@ -551,7 +551,7 @@
           {
             "id": "vocaledit-zh-2",
             "label": "Vocal Edit · Mandarin",
-            "instruction": "Replace “恩怨” with “笑容” in the lyrics",
+            "instruction": "把歌词中的“当恩怨搁一半”改成“当笑容搁一半”。",
             "voice_description": "",
             "spoken_text": "当恩怨搁一半，我怎么圈揽。看灯笼血红染，寻仇已太晚",
             "input_audio": "../assets/demo_assets/vocaledit-zh-2-input.wav",
@@ -562,7 +562,7 @@
               "duration": 12.8,
               "latency": 5.052,
               "rtf": 0.39468749999999997,
-              "rms": 0.0821
+              "rms": 0.0654
             },
             "transcriptMarks": {
               "Output": {
@@ -591,7 +591,7 @@
               "duration": 7.06,
               "latency": 3.236,
               "rtf": 0.45835694050991505,
-              "rms": 0.1048
+              "rms": 0.1057
             },
             "transcriptMarks": {
               "Output": {

@@ -1,3 +1,4 @@
+from mlx_auk.anchoring import adapt_edit_instruction
 import math
 import os
 import re
@@ -38,16 +39,65 @@ class AukInfer:
         vae_path: Optional[str] = None,
         qwen_path: Optional[str] = None,
         device: str = "mps",
+        repo_id: str = "vanch007/AuK-Flash-MLX",
         **kwargs,
     ):
-        base_dir = "/Users/vanch/mlx-AuK"
-        self.config_path = config_path or os.path.join(base_dir, "ckpts/AuK-Flash/config.yaml")
-        self.ckpt_path = ckpt_path or os.path.join(base_dir, "ckpts/AuK-Flash/auk_flash.safetensors")
-        self.qwen_path = qwen_path or os.path.join(base_dir, "ckpts/Qwen2.5-Omni-3B")
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        mlx_dir = os.path.join(base_dir, "models/mlx-auk-flash")
+
+        # 1. Resolve MLX / PyTorch checkpoint path
+        if ckpt_path is None:
+            local_dit = os.path.join(mlx_dir, "dit.safetensors")
+            if os.path.exists(local_dit):
+                self.ckpt_path = local_dit
+            elif os.path.exists(os.path.join(base_dir, "ckpts/AuK-Flash/auk_flash.safetensors")):
+                self.ckpt_path = os.path.join(base_dir, "ckpts/AuK-Flash/auk_flash.safetensors")
+            else:
+                from huggingface_hub import snapshot_download
+                print(f"Downloading MLX model from Hugging Face ({repo_id})...")
+                snapshot_download(repo_id=repo_id, local_dir=mlx_dir)
+                self.ckpt_path = local_dit
+        else:
+            self.ckpt_path = ckpt_path
+
+        # 2. Resolve VAE path
+        if vae_path is None:
+            local_vae = os.path.join(mlx_dir, "vae.safetensors")
+            if os.path.exists(local_vae):
+                self.vae_path = local_vae
+            elif os.path.exists(os.path.join(base_dir, "ckpts/AuK-Flash/vae.safetensors")):
+                self.vae_path = os.path.join(base_dir, "ckpts/AuK-Flash/vae.safetensors")
+            else:
+                self.vae_path = local_vae
+        else:
+            self.vae_path = vae_path
+
+        # 3. Resolve Config path
+        if config_path is None:
+            local_cfg = os.path.join(mlx_dir, "config.json")
+            if os.path.exists(local_cfg):
+                self.config_path = local_cfg
+            elif os.path.exists(os.path.join(base_dir, "ckpts/AuK-Flash/config.yaml")):
+                self.config_path = os.path.join(base_dir, "ckpts/AuK-Flash/config.yaml")
+            else:
+                self.config_path = local_cfg
+        else:
+            self.config_path = config_path
+
+        # 4. Resolve Qwen feature encoder
+        if qwen_path is None:
+            local_qwen = os.path.join(base_dir, "ckpts/Qwen2.5-Omni-3B")
+            if os.path.exists(local_qwen):
+                self.qwen_path = local_qwen
+            else:
+                self.qwen_path = "Qwen/Qwen2.5-Omni-3B"
+        else:
+            self.qwen_path = qwen_path
+
         self.device = device
         self.target_sample_rate = 24000
 
-        print("Loading full-parity AuK inference engine on %s..." % self.device)
+        print(f"Loading full-parity AuK inference engine on {self.device}...")
         self.engine = UpstreamAukInfer(
             config_path=self.config_path,
             ckpt_path=self.ckpt_path,
@@ -121,8 +171,25 @@ class AukInfer:
                 else:
                     final_gen_seconds = 3.5
 
+        # Contextual prompt anchoring for edit tasks
+        adapted_messages = []
+        for m in messages:
+            new_m = dict(m)
+            if m.get("role") == "user":
+                new_content = []
+                for c in m.get("content", []):
+                    if isinstance(c, dict) and c.get("type") == "text":
+                        orig_t = c.get("text", "")
+                        adapted_t = adapt_edit_instruction(orig_t, spoken_text=spoken_text)
+                        new_content.append({**c, "text": adapted_t})
+                    else:
+                        new_content.append(c)
+                new_m["content"] = new_content
+            adapted_messages.append(new_m)
+
         wav, sr = self.engine.generate(
-            messages,
+            adapted_messages,
+
             audio=audio_arg,
             gen_seconds=final_gen_seconds,
             seed=seed,
