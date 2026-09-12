@@ -339,22 +339,92 @@
       font-weight: 700;
     }
 
+    .view-mode-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      background: #161b22;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+    .view-mode-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #c9d1d9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .view-pill-group {
+      display: inline-flex;
+      background: #0d1117;
+      border-radius: 20px;
+      padding: 2px;
+      border: 1px solid var(--card-border);
+    }
+    .view-pill-btn {
+      padding: 6px 14px;
+      border-radius: 18px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .view-pill-btn:hover {
+      color: #f0f6fc;
+    }
+    .view-pill-btn.active {
+      background: #8957e5;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(137, 87, 229, 0.4);
+    }
+    .view-pill-btn.active.flash {
+      background: #238636;
+      box-shadow: 0 2px 8px rgba(35, 134, 54, 0.4);
+    }
+    .view-pill-btn.active.base {
+      background: #1f6feb;
+      box-shadow: 0 2px 8px rgba(31, 111, 235, 0.4);
+    }
+
     .audio-comparison-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
       background: #0d1117;
       border: 1px solid var(--card-border);
       border-radius: 8px;
-      padding: 16px;
+      padding: 14px;
     }
     .audio-slot {
       display: flex;
       flex-direction: column;
       gap: 8px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 10px 12px;
+      transition: border-color 0.2s ease;
+    }
+    .audio-slot:hover {
+      border-color: #58a6ff66;
+    }
+    .slot-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      min-height: 22px;
     }
     .slot-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -363,6 +433,31 @@
     .slot-title.src { color: #8b949e; }
     .slot-title.official { color: #f0883e; }
     .slot-title.mlx { color: #3fb950; }
+    .slot-title.mlx-flash { color: #3fb950; }
+    .slot-title.mlx-base { color: #58a6ff; }
+    .slot-meta-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .slot-meta-badge.flash {
+      background: rgba(46, 160, 67, 0.15);
+      color: #3fb950;
+      border: 1px solid rgba(46, 160, 67, 0.3);
+    }
+    .slot-meta-badge.base {
+      background: rgba(56, 139, 253, 0.15);
+      color: #58a6ff;
+      border: 1px solid rgba(56, 139, 253, 0.3);
+    }
+    .tag-rtf-blue {
+      background: var(--blue-bg);
+      color: var(--blue-text);
+      border: 1px solid rgba(88, 166, 255, 0.4);
+    }
     audio {
       width: 100%;
       height: 38px;
@@ -509,7 +604,10 @@
         GitHub 源码仓库 (vanch007/mlx-AuK)
       </a>
       <a href="https://huggingface.co/vanch007/AuK-Flash-MLX" target="_blank" class="repo-btn hf-btn">
-        🤗 Hugging Face 全精度权重
+        🤗 Flash 权重 (5.7GB)
+      </a>
+      <a href="https://huggingface.co/vanch007/AuK-Base-MLX" target="_blank" class="repo-btn hf-btn">
+        🤗 Base 权重 (5.7GB)
       </a>
       <a href="https://huggingface.co/vanch007/AuK-Flash-MLX-8bit" target="_blank" class="repo-btn hf-btn">
         🗜️ 8-Bit 量化版
@@ -548,6 +646,17 @@
   </div>
 
   <main class="container">
+    <div class="view-mode-bar">
+      <div class="view-mode-title">
+        <span>🎧 试听对比模式:</span>
+      </div>
+      <div class="view-pill-group">
+        <button class="view-pill-btn active" id="btn-mode-all" onclick="switchViewMode('all')">全量 4 轨并列对比 (原音 + 官方原版 + MLX-Flash + MLX-Base)</button>
+        <button class="view-pill-btn flash" id="btn-mode-flash" onclick="switchViewMode('flash')">⚡ 仅 MLX-Flash 对比 (4步极速)</button>
+        <button class="view-pill-btn base" id="btn-mode-base" onclick="switchViewMode('base')">🎯 仅 MLX-Base 对比 (32步高保真)</button>
+      </div>
+    </div>
+
     <div class="search-row">
       <input type="text" class="search-input" id="search-input" placeholder="搜索任务、编辑动作、台词或样本 ID (例如: Replace, Add, 曾两次进谒, 枭雄)...">
       <div style="display:flex; align-items:center; gap:12px;">
@@ -574,12 +683,16 @@
 
   <script>
     let catalogData = [];
-    let currentModel = "flash";
+    let currentViewMode = "all"; // 'all', 'flash', 'base'
 
-    function switchGlobalModel(modelName) {
-      currentModel = modelName;
-      document.getElementById("btn-model-flash").className = "model-pill-btn" + (modelName === "flash" ? " active" : "");
-      document.getElementById("btn-model-base").className = "model-pill-btn base" + (modelName === "base" ? " active base" : "");
+    function switchViewMode(mode) {
+      currentViewMode = mode;
+      const btnAll = document.getElementById("btn-mode-all");
+      const btnFlash = document.getElementById("btn-mode-flash");
+      const btnBase = document.getElementById("btn-mode-base");
+      if (btnAll) btnAll.className = "view-pill-btn" + (mode === "all" ? " active" : "");
+      if (btnFlash) btnFlash.className = "view-pill-btn flash" + (mode === "flash" ? " active flash" : "");
+      if (btnBase) btnBase.className = "view-pill-btn base" + (mode === "base" ? " active base" : "");
       renderSamples();
     }
     let currentFamily = "all";
@@ -743,9 +856,10 @@
 
       visibleSamples.forEach(({ sample, grp, fam }) => {
         const m = sample.metrics;
+        const mb = sample.base_metrics;
         let rtfClass = m.rtf < 0.5 ? "tag-rtf-good" : (m.rtf < 1.0 ? "tag-rtf-ok" : "tag-rtf-warn");
         let speedup = (1.0 / m.rtf).toFixed(2);
-        let rtfBadge = "⚡ RTF: " + m.rtf.toFixed(3) + " (" + speedup + "x " + (m.rtf < 1.0 ? "超实时" : "生成") + ")";
+        let rtfBadge = "⚡ Flash RTF: " + m.rtf.toFixed(3) + " (" + speedup + "x 超实时)";
 
         const card = document.createElement("div");
         card.className = "card";
@@ -755,11 +869,6 @@
         let defaultTrackLabel = "";
         let initialMarks = null;
         let initialInstruction = sample.instruction;
-        let isBase = (currentModel === "base");
-        let activeMetrics = (isBase && sample.base_metrics) ? sample.base_metrics : sample.metrics;
-        let initialMlxUrl = (isBase && sample.mlx_base_audio) ? sample.mlx_base_audio : sample.mlx_audio;
-        let modelBadgeTitle = isBase ? "MLX-AuK Base (高保真 CFG=2.0)" : "MLX-AuK Flash (4步极速)";
-        let fallbackNotice = (isBase && !sample.mlx_base_audio) ? " <span style='font-size:10px; color:#d29922;'>[Base生成中]</span>" : "";
 
         if (sample.official_multi && sample.official_multi.length > 0) {
           let activeIdx = 0;
@@ -782,35 +891,74 @@
             initialInstruction = sample.nvInstructions[defaultTrackLabel];
           }
 
-          if (sample.mlx_multi && sample.mlx_multi.length > 0) {
-            const matchingMlx = sample.mlx_multi.find(t => t.label === defaultTrackLabel);
-            if (matchingMlx) initialMlxUrl = matchingMlx.url;
-          }
-
           officialSlotHtml = '<div class="audio-slot">' +
-            '<span class="slot-title official">[官方原版] <span id="label-tag-' + sample.id + '">' + activeTrack.label + '</span></span>' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title official">[官方原版] <span id="label-tag-' + sample.id + '">' + activeTrack.label + '</span></span>' +
+            '</div>' +
             '<audio controls preload="metadata" src="' + activeTrack.url + '?_t=' + sessionTime + '" id="audio-off-' + sample.id + '"></audio>' +
             '<div class="multi-outputs">' +
-              sample.official_multi.map((item, idx) => '<button class="chip-btn ' + (idx===activeIdx?'active':'') + '" onclick="switchEditTrack(\'' + sample.id + '\', \'' + item.url + '\', \'' + item.label + '\', this)">' + item.label + '</button>').join("") +
+              sample.official_multi.map((item, idx) => `<button class="chip-btn ${idx===activeIdx?'active':''}" onclick="switchEditTrack('${sample.id}', '${item.url}', '${item.label}', this)">${item.label}</button>`).join("") +
             '</div>' +
           '</div>';
         } else if (sample.official_audio) {
           if (sample.transcriptMarks && sample.transcriptMarks["Output"]) {
             initialMarks = sample.transcriptMarks["Output"];
           }
-          officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">[官方原版] 演示输出</span><audio controls preload="metadata" src="' + sample.official_audio + '?_t=' + sessionTime + '"></audio></div>';
+          officialSlotHtml = '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title official">[官方原版] 演示输出</span>' +
+            '</div>' +
+            '<audio controls preload="metadata" src="' + sample.official_audio + '?_t=' + sessionTime + '"></audio>' +
+          '</div>';
         } else {
-          officialSlotHtml = '<div class="audio-slot"><span class="slot-title official">[官方原版] 输出</span><div style="font-size:12px; color:var(--text-muted); padding: 8px;">无独立单轨 (滑块演示)</div></div>';
+          officialSlotHtml = '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title official">[官方原版] 输出</span>' +
+            '</div>' +
+            '<div style="font-size:12px; color:var(--text-muted); padding: 8px 12px; height:38px; display:flex; align-items:center; background:#0d1117; border-radius:6px; border:1px dashed #30363d;">无独立单轨 (滑块演示)</div>' +
+          '</div>';
         }
 
         let inputSlotHtml = sample.input_audio ?
-          '<div class="audio-slot"><span class="slot-title src">[参考原音频] 输入声音</span><audio controls preload="metadata" src="' + sample.input_audio + '?_t=' + sessionTime + '"></audio></div>' :
-          '<div class="audio-slot"><span class="slot-title src">[输入状态]</span><div style="font-size:12px; color:var(--text-muted); padding: 8px;">纯文本角色音色描述 (无参考音频)</div></div>';
+          '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title src">[参考原音频] 输入声音</span>' +
+            '</div>' +
+            '<audio controls preload="metadata" src="' + sample.input_audio + '?_t=' + sessionTime + '"></audio>' +
+          '</div>' :
+          '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title src">[输入状态]</span>' +
+            '</div>' +
+            '<div style="font-size:12px; color:var(--text-muted); padding: 8px 12px; height:38px; display:flex; align-items:center; background:#0d1117; border-radius:6px; border:1px dashed #30363d;">纯文本角色音色描述 (无参考音频)</div>' +
+          '</div>';
 
-        let mlxSlotHtml = '<div class="audio-slot">' +
-          '<span class="slot-title mlx">[本项目生成] ' + modelBadgeTitle + fallbackNotice + ' <span id="mlx-tag-' + sample.id + '" style="font-size:11px; color:#7ee787; font-weight:normal;">' + (defaultTrackLabel ? '('+defaultTrackLabel+')' : '') + '</span></span>' +
-          '<audio controls preload="metadata" src="' + initialMlxUrl + '?_t=' + sessionTime + '" id="audio-mlx-' + sample.id + '"></audio>' +
+        let flashUrl = sample.mlx_audio;
+        if (sample.mlx_multi && sample.mlx_multi.length > 0) {
+          const matchingMlx = sample.mlx_multi.find(t => t.label === defaultTrackLabel);
+          if (matchingMlx) flashUrl = matchingMlx.url;
+        }
+
+        let flashSlotHtml = '<div class="audio-slot">' +
+          '<div class="slot-header-row">' +
+            '<span class="slot-title mlx-flash">⚡ [本项目] MLX Flash (4步极速) <span id="mlx-tag-' + sample.id + '" style="font-size:11px; color:#7ee787; font-weight:normal;">' + (defaultTrackLabel ? '('+defaultTrackLabel+')' : '') + '</span></span>' +
+            '<span class="slot-meta-badge flash">RTF ' + m.rtf.toFixed(3) + ' · ' + m.latency.toFixed(2) + 's</span>' +
+          '</div>' +
+          '<audio controls preload="metadata" src="' + flashUrl + '?_t=' + sessionTime + '" id="audio-mlx-flash-' + sample.id + '"></audio>' +
         '</div>';
+
+        let baseSlotHtml = "";
+        let baseUrl = sample.mlx_base_audio;
+        if (baseUrl) {
+          let mbText = mb ? ('RTF ' + mb.rtf.toFixed(3) + ' · ' + mb.latency.toFixed(2) + 's') : '高保真 32步';
+          baseSlotHtml = '<div class="audio-slot">' +
+            '<div class="slot-header-row">' +
+              '<span class="slot-title mlx-base">🎯 [本项目] MLX Base (高保真 32步)</span>' +
+              '<span class="slot-meta-badge base">' + mbText + '</span>' +
+            '</div>' +
+            '<audio controls preload="metadata" src="' + baseUrl + '?_t=' + sessionTime + '" id="audio-mlx-base-' + sample.id + '"></audio>' +
+          '</div>';
+        }
 
         let promptRowsHtml = "";
         let instrBoxLabel = "【操作指令】";
@@ -839,17 +987,35 @@
           '</div>';
         }
 
+        let slotsHtml = inputSlotHtml + officialSlotHtml;
+        if (currentViewMode === "all") {
+          slotsHtml += flashSlotHtml + baseSlotHtml;
+        } else if (currentViewMode === "flash") {
+          slotsHtml += flashSlotHtml;
+        } else if (currentViewMode === "base") {
+          slotsHtml += (baseSlotHtml || flashSlotHtml);
+        }
+
+        let baseTagHtml = "";
+        if (mb) {
+          let baseSpeedup = (1.0 / mb.rtf).toFixed(2);
+          let baseTagClass = mb.rtf < 1.0 ? "tag-rtf-good" : "tag-rtf-blue";
+          baseTagHtml = '<span class="tag ' + baseTagClass + '">🎯 Base RTF: ' + mb.rtf.toFixed(3) + ' (' + (mb.rtf < 1.0 ? baseSpeedup + 'x' : '高保真') + ')</span>';
+        }
+
         card.innerHTML = '<div class="card-header">' +
           '<div class="card-title"><span>' + grp.title + '</span><span style="font-size:13px; color:var(--text-muted); font-weight:normal;">/ ' + sample.label + '</span></div>' +
           '<div class="card-meta">' +
             '<span class="tag ' + rtfClass + '">' + rtfBadge + '</span>' +
+            baseTagHtml +
             '<span class="tag tag-neutral">音频时长: ' + m.duration.toFixed(2) + 's</span>' +
-            '<span class="tag tag-neutral">耗时: ' + m.latency.toFixed(3) + 's</span>' +
+            '<span class="tag tag-neutral">Flash耗时: ' + m.latency.toFixed(2) + 's</span>' +
+            (mb ? '<span class="tag tag-neutral">Base耗时: ' + mb.latency.toFixed(2) + 's</span>' : '') +
             '<span class="tag tag-neutral">RMS: ' + m.rms.toFixed(4) + '</span>' +
           '</div>' +
         '</div>' +
         '<div class="prompt-box">' + promptRowsHtml + '</div>' +
-        '<div class="audio-comparison-grid">' + inputSlotHtml + officialSlotHtml + mlxSlotHtml + '</div>';
+        '<div class="audio-comparison-grid">' + slotsHtml + '</div>';
 
         container.appendChild(card);
       });
@@ -878,7 +1044,7 @@
       if (!currentSample) return;
 
       // 2. Synchronously switch MLX audio player!
-      const mlxAudio = document.getElementById("audio-mlx-" + sampleId);
+      const mlxAudio = document.getElementById("audio-mlx-flash-" + sampleId) || document.getElementById("audio-mlx-" + sampleId);
       const mlxTag = document.getElementById("mlx-tag-" + sampleId);
       if (mlxAudio && currentSample.mlx_multi) {
         const targetMlx = currentSample.mlx_multi.find(t => t.label === trackLabel);
