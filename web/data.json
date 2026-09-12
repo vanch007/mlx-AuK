@@ -46,9 +46,9 @@
             "official_multi": [],
             "mlx_audio": "../outputs/all_62_samples/instruct-tts_instruct-tts-2.wav",
             "metrics": {
-              "duration": 15.0,
-              "latency": 3.198,
-              "rtf": 0.2132,
+              "duration": 9.08,
+              "latency": 2.15,
+              "rtf": 0.237,
               "rms": 0.0815
             },
             "transcriptMarks": null,
