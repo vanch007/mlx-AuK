@@ -60,10 +60,14 @@ AuK-Flash uses a 4-step DMD distilled flow-matching recipe with CFG strictly loc
 
 ## 📦 Hugging Face Weights
 
-Pre-converted MLX safetensors are hosted directly on Hugging Face:
+Pre-converted MLX safetensors for both **AuK-Flash** and **AuK-Base** are hosted directly on Hugging Face:
 
-- 🚀 **Full Precision (FP32/BF16)**: [vanch007/AuK-Flash-MLX](https://huggingface.co/vanch007/AuK-Flash-MLX)
-- 🗜️ **8-Bit Quantized**: [vanch007/AuK-Flash-MLX-8bit](https://huggingface.co/vanch007/AuK-Flash-MLX-8bit)
+| Model Variant | Description | Hugging Face Repository | Backbone Size | Sampling Steps / CFG |
+| :--- | :--- | :--- | :--- | :--- |
+| **AuK-Flash (Native MLX)** | 4-step distilled student for ultra-fast generation | [vanch007/AuK-Flash-MLX](https://huggingface.co/vanch007/AuK-Flash-MLX) | 5.70 GB | 4 steps (CFG=0.0) |
+| **AuK-Flash-8bit** | 8-bit quantized Flash for 16GB Macs | [vanch007/AuK-Flash-MLX-8bit](https://huggingface.co/vanch007/AuK-Flash-MLX-8bit) | **0.56 GB** | 4 steps (CFG=0.0) |
+| **AuK-Base (Native MLX)** | Full foundational model for high-fidelity generation & editing | [vanch007/AuK-Base-MLX](https://huggingface.co/vanch007/AuK-Base-MLX) | 5.70 GB | 32 steps (CFG=2.0) |
+| **AuK-Base-8bit** | 8-bit quantized Base model | [vanch007/AuK-Base-MLX-8bit](https://huggingface.co/vanch007/AuK-Base-MLX-8bit) | **0.56 GB** | 32 steps (CFG=2.0) |
 
 ---
 
@@ -86,7 +90,11 @@ pip install mlx soundfile numpy torch torchaudio transformers huggingface_hub
 from mlx_auk.infer import AukInfer, save_audio
 
 # Automatically loads local Native MLX weights or downloads from Hugging Face
-infer = AukInfer()
+# Automatically loads AuK-Flash (4-step distilled) by default
+infer = AukInfer(variant="flash")
+
+# Or load the full AuK-Base foundation model (32-step high-fidelity generation)
+# infer = AukInfer(variant="base")
 
 # 1. Zero-shot Voice Cloning
 messages = [
@@ -137,6 +145,7 @@ Features:
 ## 🧪 Running Automated Unit Tests
 
 ```bash
+python tests/test_base_model.py
 python tests/test_anchoring.py
 python tests/test_quantization.py
 python tests/test_dit.py

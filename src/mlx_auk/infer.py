@@ -39,24 +39,32 @@ class AukInfer:
         vae_path: Optional[str] = None,
         qwen_path: Optional[str] = None,
         device: str = "mps",
-        repo_id: str = "vanch007/AuK-Flash-MLX",
+        variant: str = "flash",
+        repo_id: Optional[str] = None,
         **kwargs,
     ):
         base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        mlx_dir = os.path.join(base_dir, "models/mlx-auk-flash")
+        self.variant = variant.lower().strip()
+        default_dir = "models/mlx-auk-base" if self.variant == "base" else "models/mlx-auk-flash"
+        default_repo = "vanch007/AuK-Base-MLX" if self.variant == "base" else "vanch007/AuK-Flash-MLX"
+        effective_repo = repo_id or default_repo
+        mlx_dir = os.path.join(base_dir, default_dir)
 
         # 1. Resolve MLX / PyTorch checkpoint path
         if ckpt_path is None:
             local_dit = os.path.join(mlx_dir, "dit.safetensors")
             if os.path.exists(local_dit):
                 self.ckpt_path = local_dit
-            elif os.path.exists(os.path.join(base_dir, "ckpts/AuK-Flash/auk_flash.safetensors")):
-                self.ckpt_path = os.path.join(base_dir, "ckpts/AuK-Flash/auk_flash.safetensors")
             else:
-                from huggingface_hub import snapshot_download
-                print(f"Downloading MLX model from Hugging Face ({repo_id})...")
-                snapshot_download(repo_id=repo_id, local_dir=mlx_dir)
-                self.ckpt_path = local_dit
+                legacy_dir = "ckpts/AuK/auk_base.safetensors" if self.variant == "base" else "ckpts/AuK-Flash/auk_flash.safetensors"
+                legacy_path = os.path.join(base_dir, legacy_dir)
+                if os.path.exists(legacy_path):
+                    self.ckpt_path = legacy_path
+                else:
+                    from huggingface_hub import snapshot_download
+                    print(f"Downloading MLX model from Hugging Face ({effective_repo})...")
+                    snapshot_download(repo_id=effective_repo, local_dir=mlx_dir)
+                    self.ckpt_path = local_dit
         else:
             self.ckpt_path = ckpt_path
 
@@ -65,10 +73,8 @@ class AukInfer:
             local_vae = os.path.join(mlx_dir, "vae.safetensors")
             if os.path.exists(local_vae):
                 self.vae_path = local_vae
-            elif os.path.exists(os.path.join(base_dir, "ckpts/AuK-Flash/vae.safetensors")):
-                self.vae_path = os.path.join(base_dir, "ckpts/AuK-Flash/vae.safetensors")
             else:
-                self.vae_path = local_vae
+                self.vae_path = os.path.join(base_dir, "models/mlx-auk-flash/vae.safetensors")
         else:
             self.vae_path = vae_path
 
@@ -77,10 +83,9 @@ class AukInfer:
             local_cfg = os.path.join(mlx_dir, "config.json")
             if os.path.exists(local_cfg):
                 self.config_path = local_cfg
-            elif os.path.exists(os.path.join(base_dir, "ckpts/AuK-Flash/config.yaml")):
-                self.config_path = os.path.join(base_dir, "ckpts/AuK-Flash/config.yaml")
             else:
-                self.config_path = local_cfg
+                legacy_cfg = "ckpts/AuK/config.yaml" if self.variant == "base" else "ckpts/AuK-Flash/config.yaml"
+                self.config_path = os.path.join(base_dir, legacy_cfg)
         else:
             self.config_path = config_path
 
