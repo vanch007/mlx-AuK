@@ -2,10 +2,13 @@
 import re
 from typing import Optional, Tuple
 
-_STRIP_CHARS = ' \'"\u201c\u201d\u2018\u2019'
+_STRIP_CHARS = ' \'\"\u201c\u201d\u2018\u2019'
 
 def strip_quotes(s: str) -> str:
     return s.strip(_STRIP_CHARS)
+
+def has_cjk(text: str) -> bool:
+    return bool(re.search(r'[\u4e00-\u9fff]', text))
 
 def extract_context_window(full_text: str, target: str, replacement: str, window_chars: int = 4) -> Tuple[str, str]:
     if not full_text or target not in full_text:
@@ -15,8 +18,8 @@ def extract_context_window(full_text: str, target: str, replacement: str, window
     end = min(len(full_text), idx + len(target) + window_chars)
     prefix = full_text[start:idx].lstrip('\uff0c\u3002\uff01\uff1f,.!?;: ')
     suffix = full_text[idx + len(target):end].rstrip('\uff0c\u3002\uff01\uff1f,.!?;: ')
-    orig_window = f'{prefix}{target}{suffix}'
-    new_window = f'{prefix}{replacement}{suffix}'
+    orig_window = f"{prefix}{target}{suffix}"
+    new_window = f"{prefix}{replacement}{suffix}"
     return orig_window, new_window
 
 def adapt_edit_instruction(
@@ -27,7 +30,42 @@ def adapt_edit_instruction(
     if not instruction:
         return instruction
 
-    lowered = instruction.lower()
+    lowered = instruction.lower().strip()
+
+    # 1. Add / Insert
+    if lowered.startswith('add ') or lowered.startswith('insert '):
+        m = re.search(r'^(?:add|insert)\s+(.+?)\s+(after|before)\s+(.+)$', instruction, flags=re.IGNORECASE)
+        if m:
+            content = strip_quotes(m.group(1))
+            pos = m.group(2).lower()
+            anchor = strip_quotes(m.group(3))
+            if has_cjk(content) or has_cjk(anchor):
+                dir_str = '后面' if pos == 'after' else '前面'
+                return f'在‘{anchor}’{dir_str}加上‘{content}’'
+            else:
+                return f"Insert '{content}' {pos} '{anchor}'."
+
+    # 2. Delete / Remove
+    if lowered.startswith('delete ') or lowered.startswith('remove '):
+        m_anchor = re.search(r'^(?:delete|remove)\s+(.+?)\s+(after|before)\s+(.+)$', instruction, flags=re.IGNORECASE)
+        if m_anchor:
+            content = strip_quotes(m_anchor.group(1))
+            pos = m_anchor.group(2).lower()
+            anchor = strip_quotes(m_anchor.group(3))
+            if has_cjk(content) or has_cjk(anchor):
+                dir_str = '后面' if pos == 'after' else '前面'
+                return f'删掉‘{anchor}’{dir_str}的‘{content}’'
+            else:
+                return f"Remove '{content}' {pos} '{anchor}'."
+        m_simple = re.search(r'^(?:delete|remove)\s+(.+)$', instruction, flags=re.IGNORECASE)
+        if m_simple:
+            content = strip_quotes(m_simple.group(1))
+            if has_cjk(content):
+                return f'删掉‘{content}’'
+            else:
+                return f"Remove '{content}'."
+
+    # 3. Replace / Change
     if 'replace ' in lowered or 'change ' in lowered:
         parts = re.split(r'\s+(?:with|to)\s+', instruction, flags=re.IGNORECASE)
         if len(parts) == 2:
@@ -35,32 +73,33 @@ def adapt_edit_instruction(
             right = re.sub(r'\s+in\s+.*$', '', parts[1], flags=re.IGNORECASE)
             orig_word = strip_quotes(left)
             new_word = strip_quotes(right)
-
             if orig_word and new_word:
                 is_lyric = is_vocal or 'lyric' in lowered or 'vocal' in lowered or 'sing' in lowered
-                if spoken_text and orig_word in spoken_text:
-                    orig_win, new_win = extract_context_window(spoken_text, orig_word, new_word)
-                else:
-                    orig_win, new_win = orig_word, new_word
                 if is_lyric:
-                    return f'\u628a\u6b4c\u8bcd\u4e2d\u7684\u201c{orig_win}\u201d\u6539\u6210\u201c{new_win}\u201d\u3002'
+                    if spoken_text and orig_word in spoken_text:
+                        orig_win, new_win = extract_context_window(spoken_text, orig_word, new_word)
+                    else:
+                        orig_win, new_win = orig_word, new_word
+                    return f'把歌词中的“{orig_win}”改成“{new_win}”。'
+                elif has_cjk(orig_word) or has_cjk(new_word):
+                    return f'把‘{orig_word}’改成‘{new_word}’'
                 else:
-                    return f'Change "{orig_win}" to "{new_win}" in the recording.'
+                    return f"Replace '{orig_word}' with '{new_word}'."
 
-    if '\u628a' in instruction and ('\u6539\u6210' in instruction or '\u66ff\u6362\u4e3a' in instruction):
-        m = re.search(r'\u628a(?:\u8fd9\u6bb5)?(?:\u6b4c\u8bcd|\u8bf4\u8bdd)?(?:\u4e2d)?(?:\u7684)?(.+?)(?:\u6539\u6210|\u66ff\u6362\u4e3a|\u6362\u4e30)(.+)', instruction)
+    if '把' in instruction and ('改成' in instruction or '替换为' in instruction):
+        m = re.search(r'把(?:这段)?(?:歌词|说话)?(?:中)?(?:的)?(.+?)(?:改成|替换为|换为)(.+)', instruction)
         if m:
             orig_word = strip_quotes(m.group(1))
             new_word = strip_quotes(m.group(2))
             if orig_word and new_word:
-                is_lyric = is_vocal or '\u6b4c\u8bcd' in instruction or '\u5531' in instruction
-                if spoken_text and orig_word in spoken_text:
-                    orig_win, new_win = extract_context_window(spoken_text, orig_word, new_word)
-                else:
-                    orig_win, new_win = orig_word, new_word
+                is_lyric = is_vocal or '歌词' in instruction or '唱' in instruction
                 if is_lyric:
-                    return f'\u628a\u6b4c\u8bcd\u4e2d\u7684\u201c{orig_win}\u201d\u6539\u6210\u201c{new_win}\u201d\u3002'
+                    if spoken_text and orig_word in spoken_text:
+                        orig_win, new_win = extract_context_window(spoken_text, orig_word, new_word)
+                    else:
+                        orig_win, new_win = orig_word, new_word
+                    return f'把歌词中的“{orig_win}”改成“{new_win}”。'
                 else:
-                    return f'\u628a\u201c{orig_win}\u201d\u6539\u6210\u201c{new_win}\u201d\u3002'
+                    return f'把‘{orig_word}’改成‘{new_word}’'
 
     return instruction

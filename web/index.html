@@ -949,11 +949,15 @@
 
         let baseSlotHtml = "";
         let baseUrl = sample.mlx_base_audio;
+        if (sample.mlx_base_multi && sample.mlx_base_multi.length > 0) {
+          const matchingBaseMlx = sample.mlx_base_multi.find(t => t.label === defaultTrackLabel);
+          if (matchingBaseMlx) baseUrl = matchingBaseMlx.url;
+        }
         if (baseUrl) {
           let mbText = mb ? ('RTF ' + mb.rtf.toFixed(3) + ' · ' + mb.latency.toFixed(2) + 's') : '高保真 32步';
           baseSlotHtml = '<div class="audio-slot">' +
             '<div class="slot-header-row">' +
-              '<span class="slot-title mlx-base">🎯 [本项目] MLX Base (高保真 32步)</span>' +
+              '<span class="slot-title mlx-base">🎯 [本项目] MLX Base (高保真 32步) <span id="mlx-base-tag-' + sample.id + '" style="font-size:11px; color:#79c0ff; font-weight:normal;">' + (defaultTrackLabel ? '('+defaultTrackLabel+')' : '') + '</span></span>' +
               '<span class="slot-meta-badge base">' + mbText + '</span>' +
             '</div>' +
             '<audio controls preload="metadata" src="' + baseUrl + '?_t=' + sessionTime + '" id="audio-mlx-base-' + sample.id + '"></audio>' +
@@ -1043,7 +1047,7 @@
 
       if (!currentSample) return;
 
-      // 2. Synchronously switch MLX audio player!
+      // 2. Synchronously switch MLX audio players (both Flash and Base)!
       const mlxAudio = document.getElementById("audio-mlx-flash-" + sampleId) || document.getElementById("audio-mlx-" + sampleId);
       const mlxTag = document.getElementById("mlx-tag-" + sampleId);
       if (mlxAudio && currentSample.mlx_multi) {
@@ -1051,6 +1055,16 @@
         if (targetMlx) {
           mlxAudio.src = targetMlx.url + "?_t=" + Date.now();
           if (mlxTag) mlxTag.textContent = "(" + trackLabel + ")";
+        }
+      }
+
+      const mlxBaseAudio = document.getElementById("audio-mlx-base-" + sampleId);
+      const mlxBaseTag = document.getElementById("mlx-base-tag-" + sampleId);
+      if (mlxBaseAudio && currentSample.mlx_base_multi) {
+        const targetBaseMlx = currentSample.mlx_base_multi.find(t => t.label === trackLabel);
+        if (targetBaseMlx) {
+          mlxBaseAudio.src = targetBaseMlx.url + "?_t=" + Date.now();
+          if (mlxBaseTag) mlxBaseTag.textContent = "(" + trackLabel + ")";
         }
       }
 

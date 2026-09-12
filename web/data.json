@@ -270,7 +270,7 @@
                 "url": "../assets/official_outputs/ce-zh-1-change.wav"
               }
             ],
-            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-zh-1.wav",
+            "mlx_audio": "../outputs/all_62_samples/ce-zh-1_add.wav",
             "metrics": {
               "duration": 21.82,
               "latency": 9.028,
@@ -324,13 +324,31 @@
                 "url": "../outputs/all_62_samples/ce-zh-1_replace.wav"
               }
             ],
-            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-zh-1.wav",
+            "mlx_base_audio": "../outputs/all_62_samples_base/ce-zh-1_add.wav",
             "base_metrics": {
               "duration": 21.82,
               "latency": 45.822,
               "rtf": 2.1,
               "rms": 0.078
-            }
+            },
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-zh-1-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples_base/ce-zh-1_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples_base/ce-zh-1_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples_base/ce-zh-1_replace.wav"
+              }
+            ]
           },
           {
             "id": "ce-zh-2",
@@ -358,7 +376,7 @@
                 "url": "../assets/official_outputs/ce-zh-2-change.wav"
               }
             ],
-            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-zh-2.wav",
+            "mlx_audio": "../outputs/all_62_samples/ce-zh-2_add.wav",
             "metrics": {
               "duration": 12.0,
               "latency": 4.839,
@@ -412,13 +430,31 @@
                 "url": "../outputs/all_62_samples/ce-zh-2_replace.wav"
               }
             ],
-            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-zh-2.wav",
+            "mlx_base_audio": "../outputs/all_62_samples_base/ce-zh-2_add.wav",
             "base_metrics": {
               "duration": 12.0,
               "latency": 25.2,
               "rtf": 2.1,
               "rms": 0.0636
-            }
+            },
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-zh-2-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples_base/ce-zh-2_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples_base/ce-zh-2_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples_base/ce-zh-2_replace.wav"
+              }
+            ]
           },
           {
             "id": "ce-en-1",
@@ -446,7 +482,7 @@
                 "url": "../assets/official_outputs/ce-en-1-change.wav"
               }
             ],
-            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-en-1.wav",
+            "mlx_audio": "../outputs/all_62_samples/ce-en-1_add.wav",
             "metrics": {
               "duration": 20.74,
               "latency": 8.323,
@@ -500,13 +536,31 @@
                 "url": "../outputs/all_62_samples/ce-en-1_replace.wav"
               }
             ],
-            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-en-1.wav",
+            "mlx_base_audio": "../outputs/all_62_samples_base/ce-en-1_add.wav",
             "base_metrics": {
               "duration": 20.74,
               "latency": 43.554,
               "rtf": 2.1,
               "rms": 0.1443
-            }
+            },
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-en-1-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples_base/ce-en-1_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples_base/ce-en-1_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples_base/ce-en-1_replace.wav"
+              }
+            ]
           },
           {
             "id": "ce-en-2",
@@ -534,7 +588,7 @@
                 "url": "../assets/official_outputs/ce-en-2-change.wav"
               }
             ],
-            "mlx_audio": "../outputs/all_62_samples/content-edit-speech_ce-en-2.wav",
+            "mlx_audio": "../outputs/all_62_samples/ce-en-2_add.wav",
             "metrics": {
               "duration": 12.0,
               "latency": 4.359,
@@ -588,13 +642,31 @@
                 "url": "../outputs/all_62_samples/ce-en-2_replace.wav"
               }
             ],
-            "mlx_base_audio": "../outputs/all_62_samples_base/content-edit-speech_ce-en-2.wav",
+            "mlx_base_audio": "../outputs/all_62_samples_base/ce-en-2_add.wav",
             "base_metrics": {
               "duration": 12.0,
               "latency": 25.2,
               "rtf": 2.1,
               "rms": 0.0768
-            }
+            },
+            "mlx_base_multi": [
+              {
+                "label": "Input",
+                "url": "../assets/demo_assets/ce-en-2-input.wav"
+              },
+              {
+                "label": "➕ Add",
+                "url": "../outputs/all_62_samples_base/ce-en-2_add.wav"
+              },
+              {
+                "label": "➖ Delete",
+                "url": "../outputs/all_62_samples_base/ce-en-2_delete.wav"
+              },
+              {
+                "label": "🔁 Replace",
+                "url": "../outputs/all_62_samples_base/ce-en-2_replace.wav"
+              }
+            ]
           }
         ]
       },

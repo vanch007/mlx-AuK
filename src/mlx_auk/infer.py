@@ -196,12 +196,19 @@ class AukInfer:
                 new_m["content"] = new_content
             adapted_messages.append(new_m)
 
+        gen_kwargs = {}
+        if not self.engine.is_flash:
+            if nfe is not None and nfe > 0:
+                gen_kwargs["nfe"] = nfe
+            if cfg_strength is not None:
+                gen_kwargs["cfg_strength"] = cfg_strength
+
         wav, sr = self.engine.generate(
             adapted_messages,
-
             audio=audio_arg,
             gen_seconds=final_gen_seconds,
             seed=seed,
+            **gen_kwargs,
         )
 
         total_latency = time.perf_counter() - t_start
