@@ -1356,7 +1356,7 @@
             "instruction": "Say this in a <emotion> tone",
             "voice_description": "",
             "spoken_text": "",
-            "input_audio": "../assets/demo_assets/zh-1-input.wav",
+            "input_audio": "../assets/demo_assets/emotion-edit_zh-1-input.wav",
             "official_audio": null,
             "official_multi": [
               {
@@ -1369,7 +1369,7 @@
               },
               {
                 "label": "😡 angry",
-                "url": "../assets/official_outputs/zh-1-input.wav"
+                "url": "../assets/official_outputs/emotion-edit_zh-1-input.wav"
               },
               {
                 "label": "😱 afraid",
@@ -1383,9 +1383,9 @@
             "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-zh-1.wav",
             "metrics": {
               "duration": 5.24,
-              "latency": 5.59,
-              "rtf": 1.066793893129771,
-              "rms": 0.076
+              "latency": 3.458,
+              "rtf": 0.66,
+              "rms": 0.0831
             },
             "transcriptMarks": null,
             "nvInstructions": null,
@@ -1393,9 +1393,9 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-zh-1.wav",
             "base_metrics": {
               "duration": 5.24,
-              "latency": 69.437,
-              "rtf": 13.2514,
-              "rms": 0.0787
+              "latency": 8.646,
+              "rtf": 1.65,
+              "rms": 0.0831
             }
           },
           {
@@ -1404,7 +1404,7 @@
             "instruction": "Say this in a <emotion> tone",
             "voice_description": "",
             "spoken_text": "",
-            "input_audio": "../assets/demo_assets/zh-2-input.wav",
+            "input_audio": "../assets/demo_assets/emotion-edit_zh-2-input.wav",
             "official_audio": null,
             "official_multi": [
               {
@@ -1425,15 +1425,15 @@
               },
               {
                 "label": "😐 calm",
-                "url": "../assets/official_outputs/zh-2-input.wav"
+                "url": "../assets/official_outputs/emotion-edit_zh-2-input.wav"
               }
             ],
             "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-zh-2.wav",
             "metrics": {
               "duration": 4.26,
-              "latency": 7.006,
-              "rtf": 1.6446009389671363,
-              "rms": 0.095
+              "latency": 2.168,
+              "rtf": 0.509,
+              "rms": 0.085
             },
             "transcriptMarks": null,
             "nvInstructions": null,
@@ -1441,9 +1441,9 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-zh-2.wav",
             "base_metrics": {
               "duration": 4.26,
-              "latency": 102.8,
-              "rtf": 24.1314,
-              "rms": 0.0936
+              "latency": 8.431,
+              "rtf": 1.979,
+              "rms": 0.085
             }
           },
           {
@@ -1452,7 +1452,7 @@
             "instruction": "Say this in a <emotion> tone",
             "voice_description": "",
             "spoken_text": "",
-            "input_audio": "../assets/demo_assets/en-1-input.wav",
+            "input_audio": "../assets/demo_assets/emotion-edit_en-1-input.wav",
             "official_audio": null,
             "official_multi": [
               {
@@ -1473,15 +1473,15 @@
               },
               {
                 "label": "😐 calm",
-                "url": "../assets/official_outputs/en-1-input.wav"
+                "url": "../assets/official_outputs/emotion-edit_en-1-input.wav"
               }
             ],
             "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-en-1.wav",
             "metrics": {
               "duration": 6.6,
-              "latency": 8.278,
-              "rtf": 1.2542424242424244,
-              "rms": 0.0831
+              "latency": 2.785,
+              "rtf": 0.422,
+              "rms": 0.0812
             },
             "transcriptMarks": null,
             "nvInstructions": null,
@@ -1489,9 +1489,9 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-en-1.wav",
             "base_metrics": {
               "duration": 6.6,
-              "latency": 114.091,
-              "rtf": 17.2865,
-              "rms": 0.1009
+              "latency": 12.89,
+              "rtf": 1.953,
+              "rms": 0.0812
             }
           },
           {
@@ -1500,7 +1500,7 @@
             "instruction": "Say this in a <emotion> tone",
             "voice_description": "",
             "spoken_text": "",
-            "input_audio": "../assets/demo_assets/en-2-input.wav",
+            "input_audio": "../assets/demo_assets/emotion-edit_en-2-input.wav",
             "official_audio": null,
             "official_multi": [
               {
@@ -1521,15 +1521,15 @@
               },
               {
                 "label": "😐 calm",
-                "url": "../assets/official_outputs/en-2-input.wav"
+                "url": "../assets/official_outputs/emotion-edit_en-2-input.wav"
               }
             ],
             "mlx_audio": "../outputs/all_62_samples/emotion-edit_emo-en-2.wav",
             "metrics": {
               "duration": 5.76,
-              "latency": 6.685,
-              "rtf": 1.1605902777777777,
-              "rms": 0.0831
+              "latency": 2.609,
+              "rtf": 0.453,
+              "rms": 0.0825
             },
             "transcriptMarks": null,
             "nvInstructions": null,
@@ -1537,9 +1537,9 @@
             "mlx_base_audio": "../outputs/all_62_samples_base/emotion-edit_emo-en-2.wav",
             "base_metrics": {
               "duration": 5.76,
-              "latency": 93.164,
-              "rtf": 16.1743,
-              "rms": 0.1143
+              "latency": 10.932,
+              "rtf": 1.898,
+              "rms": 0.0825
             }
           }
         ]
