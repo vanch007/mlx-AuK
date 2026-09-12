@@ -378,10 +378,10 @@
             ],
             "mlx_audio": "../outputs/all_62_samples/ce-zh-2_add.wav",
             "metrics": {
-              "duration": 12.0,
-              "latency": 4.839,
-              "rtf": 0.40325000000000005,
-              "rms": 0.0573
+              "duration": 13.0,
+              "latency": 5.239,
+              "rtf": 0.403,
+              "rms": 0.0571
             },
             "transcriptMarks": {
               "➕ Add": {
@@ -432,10 +432,10 @@
             ],
             "mlx_base_audio": "../outputs/all_62_samples_base/ce-zh-2_add.wav",
             "base_metrics": {
-              "duration": 12.0,
-              "latency": 25.2,
+              "duration": 13.0,
+              "latency": 27.3,
               "rtf": 2.1,
-              "rms": 0.0636
+              "rms": 0.062
             },
             "mlx_base_multi": [
               {
